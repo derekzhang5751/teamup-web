@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import { SignupComponent } from './signup/signup.component';
 import { TeamComponent } from './team/team.component';
 import { TeamViewComponent } from './team-view/team-view.component';
 import { UploadComponent } from './upload/upload.component';
+
+import { TeamupService } from './teamup.service';
 
 @NgModule({
   declarations: [
@@ -30,9 +33,12 @@ import { UploadComponent } from './upload/upload.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    TeamupService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

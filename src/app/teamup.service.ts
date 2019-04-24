@@ -36,48 +36,24 @@ export class TeamupService {
         source: ''
     };
 
-    constructor(private http: HttpClient, private storage: Storage, public events: Events) {
-        //console.log('IotService constructor');
-        this.storage.get('lang').then((val) => {
-            if (val) {
-                this.lang = val;
-            }
-        });
-        this.storage.get('user').then((val) => {
-            if (val) {
-                this.user = val;
-            }
-        });
-        this.storage.get('username').then((val) => {
-            if (val) {
-                this.username = val;
-            }
-        });
-        this.storage.get('session').then((val) => {
-            if (val) {
-                this.session = val;
-            }
-            this.events.publish('teamup:loaded');
-        });
+    constructor(private http: HttpClient) {
+        //console.log('TeamupService constructor');
     }
 
     public setLanguage(lang) {
         this.lang = lang;
-        this.storage.set('lang', this.lang);
     }
     public getLanguage() {
         return this.lang;
     }
     public setUsername(username) {
         this.username = username;
-        this.storage.set('username', this.username);
     }
     public getUsername() {
         return this.username;
     }
     public setSession(session) {
         this.session = session;
-        this.storage.set('session', this.session);
     }
     public getSession() {
         return this.session;
@@ -102,7 +78,6 @@ export class TeamupService {
                 source: ''
             };
         }
-        this.storage.set('user', this.user);
     }
     public getUser() {
         return this.user;

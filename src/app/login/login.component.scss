@@ -1,0 +1,117 @@
+@import '../../styles.scss';
+
+app-login {
+    .login-frame {
+        max-width: 1190px;
+        margin: 0 auto;
+    }
+    .login-title {
+        width: 100%;
+        height: 77px;
+        .login-logo {
+            width: 350px;
+            height: 77px;
+        }
+        // Language drop down
+        .login-language {
+            float: right;
+            padding: 20px;
+            padding-top: 25px;
+            color: color($colors, primary);
+            font-size: 18px;
+            font-weight: 450;
+        }
+        .login-language-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 5px 5px;
+            z-index: 1;
+            font-size: 16px;
+            font-weight: 400;
+        }
+        .login-language-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .login-language-content a:hover {
+            background-color: #f1f1f1
+        }
+        .login-language:hover .login-language-content {
+            display: block;
+        }
+    }
+    .login-content {
+        display: block;
+        width: 650px;
+        height: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 100px;
+        .title {
+            width: 100%;
+            height: 100px;
+            text-align: center;
+            font-size: 70px;
+            font-weight: 400;
+        }
+        .signup {
+            width: 100%;
+            height: 100px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 400;
+        }
+        .content-wrapper {
+            width: 100%;
+            height: 220px;
+            .content-left {
+                float: left;
+                width: 300px;
+                height: 200px;
+                .btn-login {
+                    width: 130px;
+                    height: 40px;
+                    font-size: 16px;
+                }
+                .forget {
+                    display: block;
+                    float: right;
+                    height: 40px;
+                    padding-top: 13px;
+                }
+            }
+            .content-right {
+                float: right;
+                width: 300px;
+                height: 200px;
+                border-left: 1px solid gray;
+                padding-left: 45px;
+                padding-top: 40px;
+                .pic-wrapper {
+                    width: 100%;
+                    height: 60px;
+                    .third-logo {
+                        width: 250px;
+                        height: 42px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .content-terms {
+            display: block;
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 100px;
+            text-align: center;
+            font-size: 13px;
+            //font-weight: 400;
+        }
+    }
+}
