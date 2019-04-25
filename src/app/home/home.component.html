@@ -2,7 +2,20 @@
     <div class="home-frame">
         <div class="home-title">
             <img class="home-logo" src="/assets/imgs/home-logo.jpg">
-            <div class="home-user" *ngIf="user.id != 0">
+
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link text-white active" href="#">Build Your Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Sign up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#" (click)="onLoginClick()">Log in</a>
+                </li>
+            </ul>
+
+            <!--div class="home-user" *ngIf="user.id != 0">
                 <span>{{user.first_name}}</span>
                 <div class="home-user-content">
                     <a href="#" (click)="onMyProfileClick()">My Profile</a>
@@ -19,33 +32,25 @@
                     <a href="#" (click)="switchLanguage('en')">English</a>
                     <a href="#" (click)="switchLanguage('cn')">简体中文</a>
                 </div>
-            </div>
+            </div-->
         </div>
 
-        <div class="home-search">
-            <div class="home-buildbtn">
-                <a><img class="build-btn" src="/assets/imgs/home-buildbtn.jpg" (click)="openNewTeam()"></a>
-            </div>
-            <div class="home-condition">
-                <div class="search-condition">
-                    <img class="search-btn" src="/assets/imgs/search-btn.jpg">
-                    <!--div no-lines class="conditions">
-                        <input class="search-content" placeholder="Searching for anything">
-                        <ion-datetime class="search-date" displayFormat="MM/DD/YYYY" [(ngModel)]="searchDate">
-                        </ion-datetime>
-                        <ion-select class="search-city" [(ngModel)]="searchCity">
-                            <ion-option value="Toronto">Toronto</ion-option>
-                            <ion-option value="Hamilton">Hamilton</ion-option>
-                        </ion-select>
-                    </div-->
+        <div class="card position-absolute" style="width: 400px; left: 25%; top: 100px;">
+            <div class="card-body">
+                <h5 class="card-title">Find your teams</h5>
+                <label for="search-text">Search for anything</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="search-text">
                 </div>
-                <div class="search-category">
-                    <span class="cate-block">All</span>
-                    <span class="cate-block">Entertainment</span>
-                    <span class="cate-block">Bussiness</span>
-                    <span class="cate-block">My Teams</span>
-                    <span class="cate-block">My Subscripts</span>
+                <label for="search-date">Date</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="search-date">
                 </div>
+                <label for="search-city">City</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="search-city">
+                </div>
+                <a href="#" class="btn btn-primary justify-content-end">Search</a>
             </div>
         </div>
 

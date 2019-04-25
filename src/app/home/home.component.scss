@@ -1,191 +1,251 @@
 @import '../../styles.scss';
 
-app-home {
-    .home-frame {
-        max-width: 1190px;
-        margin: 0 auto;
-    }
-    .home-title {
-        width: 100%;
+.home-frame {
+    max-width: 100%;
+    margin: 0 auto;
+}
+.home-title {
+    width: 100%;
+    height: 500px;
+    background-image: url("/assets/imgs/home_bg.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    .home-logo {
+        float: left;
+        width: 350px;
         height: 77px;
-        .home-logo {
-            width: 350px;
-            height: 77px;
-        }
-        // User drop down
-        .home-user {
-            float: right;
-            padding: 20px;
-            padding-top: 25px;
-            color: color($colors, primary);
-            font-size: 18px;
-            font-weight: 450;
-        }
-        .home-user-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            padding: 5px 5px;
-            z-index: 1;
-            font-size: 16px;
-            font-weight: 400;
-        }
-        .home-user-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .home-user-content a:hover {
-            background-color: #f1f1f1
-        }
-        .home-user:hover .home-user-content {
-            display: block;
-        }
-        // Message drop down
-        .home-message {
-            float: right;
-            padding: 20px;
-            padding-top: 25px;
-            color: color($colors, primary);
-            font-size: 18px;
-            font-weight: 450;
-        }
-        // Language drop down
-        .home-language {
-            float: right;
-            padding: 20px;
-            padding-top: 25px;
-            color: color($colors, primary);
-            font-size: 18px;
-            font-weight: 450;
-        }
-        .home-language-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            padding: 5px 5px;
-            z-index: 1;
-            font-size: 16px;
-            font-weight: 400;
-        }
-        .home-language-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .home-language-content a:hover {
-            background-color: #f1f1f1
-        }
-        .home-language:hover .home-language-content {
-            display: block;
+    }
+    // User drop down
+    .home-user {
+        float: right;
+        padding: 20px;
+        padding-top: 25px;
+        color: color($colors, primary);
+        font-size: 18px;
+        font-weight: 450;
+    }
+    .home-user-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 5px 5px;
+        z-index: 1;
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .home-user-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    .home-user-content a:hover {
+        background-color: #f1f1f1
+    }
+    .home-user:hover .home-user-content {
+        display: block;
+    }
+    // Message drop down
+    .home-message {
+        float: right;
+        padding: 20px;
+        padding-top: 25px;
+        color: color($colors, primary);
+        font-size: 18px;
+        font-weight: 450;
+    }
+    // Language drop down
+    .home-language {
+        float: right;
+        padding: 20px;
+        padding-top: 25px;
+        color: color($colors, primary);
+        font-size: 18px;
+        font-weight: 450;
+    }
+    .home-language-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 5px 5px;
+        z-index: 1;
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .home-language-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    .home-language-content a:hover {
+        background-color: #f1f1f1
+    }
+    .home-language:hover .home-language-content {
+        display: block;
+    }
+}
+.home-search {
+    width: 100%;
+    .home-buildbtn {
+        float: right;
+        width: 260px;
+        height: 100px;
+        padding: 10px;
+        .build-btn {
+            width: 250px;
+            height: 90px;
         }
     }
-    .home-search {
-        width: 100%;
-        .home-buildbtn {
-            float: right;
-            width: 260px;
-            height: 100px;
-            padding: 10px;
-            .build-btn {
-                width: 250px;
-                height: 90px;
-            }
-        }
-        .home-condition {
-            width: calc(100% - 260px);
-            .search-condition {
-                width: 100%;
-                height: 56px;
-                border: 1px solid color($colors, primary);
-                border-radius: 5px;
-                .conditions {
-                    width: calc(100% - 60px);
-                    margin-top: 5px;
-                    margin-left: 5px;
-                    .search-content {
-                        width: calc(100% - 320px);
-                    }
-                    .search-date {
+    .home-condition {
+        width: calc(100% - 260px);
+        .search-condition {
+            width: 100%;
+            height: 56px;
+            border: 1px solid color($colors, primary);
+            border-radius: 5px;
+            .conditions {
+                width: calc(100% - 60px);
+                margin-top: 5px;
+                margin-left: 5px;
+                .search-content {
+                    width: calc(100% - 320px);
+                }
+                .search-date {
+                    width: 150px;
+                    border-left: 1px solid color($colors, primary);
+                    .item-cover {
                         width: 150px;
-                        border-left: 1px solid color($colors, primary);
-                        .item-cover {
-                            width: 150px;
-                            left: calc(100% - 320px);
-                        }
-                    }
-                    .search-city {
-                        width: 160px;
-                        border-left: 1px solid color($colors, primary);
-                        .item-cover {
-                            width: 160px;
-                        }
+                        left: calc(100% - 320px);
                     }
                 }
-                .search-btn {
-                    float: right;
-                    width: 50px;
-                    height: 47px;
-                    margin-top: 5px;
-                    margin-right: 5px;
+                .search-city {
+                    width: 160px;
+                    border-left: 1px solid color($colors, primary);
+                    .item-cover {
+                        width: 160px;
+                    }
                 }
             }
-            .search-category {
-                width: 100%;
+            .search-btn {
+                float: right;
+                width: 50px;
+                height: 47px;
+                margin-top: 5px;
+                margin-right: 5px;
+            }
+        }
+        .search-category {
+            width: 100%;
+            height: 40px;
+            background: url(/assets/imgs/category-bg.jpg);
+            margin-top: 10px;
+            .cate-block {
+                display: inline-block;
+                cursor: pointer;
+                margin-left: 20px;
+                width: 130px;
                 height: 40px;
-                background: url(/assets/imgs/category-bg.jpg);
-                margin-top: 10px;
-                .cate-block {
-                    display: inline-block;
-                    cursor: pointer;
-                    margin-left: 20px;
-                    width: 130px;
-                    height: 40px;
-                    line-height: 40px;
-                    font-size: 18px;
-                    color: white;
-                    font-weight: 500;
-                    text-align: center;
-                }
+                line-height: 40px;
+                font-size: 18px;
+                color: white;
+                font-weight: 500;
+                text-align: center;
             }
         }
     }
-    .home-content {
-        margin-top: 10px;
-        width: 100%;
-        background: color($colors, bg);
-        padding-left: 10px;
-        padding-right: 10px;
-        .home-show {
-            width: calc(100% - 260px);
-            .show-wrapper {
-                height: 300px;
-                .show-title {
-                    font-size: 20px;
+}
+.home-content {
+    margin-top: 10px;
+    width: 100%;
+    background: color($colors, bg);
+    padding-left: 10px;
+    padding-right: 10px;
+    .home-show {
+        width: calc(100% - 260px);
+        .show-wrapper {
+            height: 300px;
+            .show-title {
+                font-size: 20px;
+                color: black;
+                font-weight: 400;
+                height: 50px;
+                padding-top: 10px;
+            }
+            .recom-wrapper {
+                float: left;
+                width: 150px;
+                height: 220px;
+                border: 1px solid color($colors, primary);
+                border-radius: 10px;
+                padding: 5px;
+                margin-right: 20px;
+                cursor: pointer;
+                .team-pic {
+                    width: 120px;
+                    height: 100px;
+                }
+                .team-title {
+                    height: 60px;
+                    font-size: 15px;
                     color: black;
                     font-weight: 400;
-                    height: 50px;
-                    padding-top: 10px;
                 }
-                .recom-wrapper {
+                .team-size {
+                    height: 20px;
+                    font-size: 14px;
+                    color: black;
+                    font-weight: 400;
+                }
+                .team-date {
+                    height: 20px;
+                    line-height: 20px;
+                    font-size: 14px;
+                    color: black;
+                    font-weight: 400;
+                }
+                .size-pic {
                     float: left;
-                    width: 150px;
-                    height: 220px;
-                    border: 1px solid color($colors, primary);
-                    border-radius: 10px;
-                    padding: 5px;
-                    margin-right: 20px;
-                    cursor: pointer;
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 10px;
+                }
+                .size-text {
+                    float: left;
+                    height: 20px;
+                    line-height: 20px;
+                    font-size: 14px;
+                    color: black;
+                    font-weight: 400;
+                }
+            }
+            .recent-wrapper {
+                float: left;
+                width: 290px;
+                height: 120px;
+                border: 1px solid color($colors, primary);
+                border-radius: 10px;
+                padding: 10px;
+                margin-right: 20px;
+                cursor: pointer;
+                .pic-wrapper {
+                    float: left;
+                    width: 120px;
+                    height: 100px;
+                    margin-right: 10px;
                     .team-pic {
-                        width: 120px;
-                        height: 100px;
+                        width: 100%;
+                        height: 100%;
                     }
+                }
+                .recent-right {
+                    float: left;
+                    width: 130px;
+                    height: 140px;
                     .team-title {
                         height: 60px;
                         font-size: 15px;
@@ -220,74 +280,16 @@ app-home {
                         font-weight: 400;
                     }
                 }
-                .recent-wrapper {
-                    float: left;
-                    width: 290px;
-                    height: 120px;
-                    border: 1px solid color($colors, primary);
-                    border-radius: 10px;
-                    padding: 10px;
-                    margin-right: 20px;
-                    cursor: pointer;
-                    .pic-wrapper {
-                        float: left;
-                        width: 120px;
-                        height: 100px;
-                        margin-right: 10px;
-                        .team-pic {
-                            width: 100%;
-                            height: 100%;
-                        }
-                    }
-                    .recent-right {
-                        float: left;
-                        width: 130px;
-                        height: 140px;
-                        .team-title {
-                            height: 60px;
-                            font-size: 15px;
-                            color: black;
-                            font-weight: 400;
-                        }
-                        .team-size {
-                            height: 20px;
-                            font-size: 14px;
-                            color: black;
-                            font-weight: 400;
-                        }
-                        .team-date {
-                            height: 20px;
-                            line-height: 20px;
-                            font-size: 14px;
-                            color: black;
-                            font-weight: 400;
-                        }
-                        .size-pic {
-                            float: left;
-                            width: 20px;
-                            height: 20px;
-                            margin-right: 10px;
-                        }
-                        .size-text {
-                            float: left;
-                            height: 20px;
-                            line-height: 20px;
-                            font-size: 14px;
-                            color: black;
-                            font-weight: 400;
-                        }
-                    }
-                }
             }
         }
-        .home-ad {
-            float: right;
-            width: 260px;
-            height: 100px;
-            font-size: 18px;
-            color: white;
-            font-weight: 500;
-            text-align: center;
-        }
+    }
+    .home-ad {
+        float: right;
+        width: 260px;
+        height: 100px;
+        font-size: 18px;
+        color: white;
+        font-weight: 500;
+        text-align: center;
     }
 }
