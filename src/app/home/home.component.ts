@@ -78,6 +78,10 @@ export class HomeComponent implements OnInit {
         window.open('login', '_self');
     }
 
+    onLSignupClick() {
+        window.open('signup', '_self');
+    }
+
     onMyProfileClick() {
         window.open('profile', '_self');
     }

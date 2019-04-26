@@ -1,3 +1,61 @@
 <nav>
-    
+    <div class="login-frame">
+        <div class="login-title">
+            <img class="login-logo" src="/assets/imgs/home-logo.jpg">
+            <div class="login-language">
+                <span>Language</span>
+                <div class="login-language-content">
+                    <a href="#" (click)="switchLanguage('en')">English</a>
+                    <a href="#" (click)="switchLanguage('cn')">简体中文</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-content">
+            <div class="title">
+                Sign Up
+            </div>
+            <div class="signup">
+                Already have a Moreppl account? &nbsp;&nbsp; <a href="/login">Login</a>
+            </div>
+            <div class="content-wrapper">
+                <div class="content-left">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 100px;" id="basic-addon1">Username:</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 100px;" id="basic-addon1">Password:</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="Password"
+                            aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="width: 100px;" id="basic-addon1">Confirm:</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="Confirm"
+                            aria-describedby="basic-addon1">
+                    </div>
+                    <button type="button" class="btn btn-primary btn-login" (click)="onSignupClick()">Sign Up</button>
+                </div>
+                <div class="content-right">
+                    <div class="pic-wrapper" (click)="socialSignIn('google')">
+                        <img class="third-logo" src="/assets/imgs/google.jpg">
+                    </div>
+                    <div class="pic-wrapper" (click)="socialSignIn('facebook')">
+                        <img class="third-logo" src="/assets/imgs/facebook.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="content-terms">
+                * By logging in, you agree to our Terms of Use and to receive emails & updates and acknowledge that you
+                read our Privacy Policy.
+            </div>
+        </div>
+    </div>
 </nav>
