@@ -8,6 +8,7 @@ import { MyProfileComponent } from '../my-profile/my-profile.component';
 
 import { MyDatetime } from '../../app/mydatetime';
 
+declare var $: any;
 
 interface TeamModel {
     id: number;
@@ -67,6 +68,14 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('home on init');
+        $(".home_datetime").datetimepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayBtn: true,
+            todayHighlight: true,
+            minView: 2
+        });
     }
 
     switchLanguage(lang) {
