@@ -16,6 +16,8 @@ import { TeamViewComponent } from './team-view/team-view.component';
 import { UploadComponent } from './upload/upload.component';
 
 import { TeamupService } from './teamup.service';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { TeamupService } from './teamup.service';
     SignupComponent,
     TeamComponent,
     TeamViewComponent,
-    UploadComponent
+    UploadComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

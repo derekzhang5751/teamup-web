@@ -10,22 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TeamComponent implements OnInit {
     public mode: string;
-    public team: {
-        id: number;
-        author: number,
-        category: number,
-        time_begin: string,
-        time_end: string,
-        need_review: boolean,
-        dp_self: number,
-        dp_other: number
-        create_time: string,
-        status: number,
-        people: string,
-        title: string,
-        location: string,
-        desc: string
-    };
+    public team: Team;
     public applyList: Array<{
         id: number,
         user_id: number,

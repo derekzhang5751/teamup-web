@@ -4,90 +4,12 @@
     max-width: 100%;
     margin: 0 auto;
 }
-.home-title {
+.home-header-bg {
     width: 100%;
     height: 500px;
     background-image: url("/assets/imgs/home_bg.jpeg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    .home-logo {
-        float: left;
-        width: 350px;
-        height: 77px;
-    }
-    // User drop down
-    .home-user {
-        float: right;
-        padding: 20px;
-        padding-top: 25px;
-        color: color($colors, primary);
-        font-size: 18px;
-        font-weight: 450;
-    }
-    .home-user-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        padding: 5px 5px;
-        z-index: 1;
-        font-size: 16px;
-        font-weight: 400;
-    }
-    .home-user-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-    .home-user-content a:hover {
-        background-color: #f1f1f1
-    }
-    .home-user:hover .home-user-content {
-        display: block;
-    }
-    // Message drop down
-    .home-message {
-        float: right;
-        padding: 20px;
-        padding-top: 25px;
-        color: color($colors, primary);
-        font-size: 18px;
-        font-weight: 450;
-    }
-    // Language drop down
-    .home-language {
-        float: right;
-        padding: 20px;
-        padding-top: 25px;
-        color: color($colors, primary);
-        font-size: 18px;
-        font-weight: 450;
-    }
-    .home-language-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        padding: 5px 5px;
-        z-index: 1;
-        font-size: 16px;
-        font-weight: 400;
-    }
-    .home-language-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-    .home-language-content a:hover {
-        background-color: #f1f1f1
-    }
-    .home-language:hover .home-language-content {
-        display: block;
-    }
 }
 .home-search {
     width: 100%;
@@ -287,9 +209,4 @@
     .home-ad {
         display: none;
     }
-}
-.footer {
-    height: 60px;
-    width: 1100px;
-    margin: auto;
 }
