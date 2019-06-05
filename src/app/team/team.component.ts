@@ -35,7 +35,7 @@ export class TeamComponent implements OnInit {
         if (this.mode == 'create') {
             this.team = {
                 id: 0,
-                author: this.service.getUser().id,
+                author: this.service.userId,
                 category: 0,
                 time_begin: '2018-12-01T09:00:00Z',
                 time_end: '2018-12-05T17:00:00Z',

@@ -40,7 +40,7 @@ export class TeamViewComponent implements OnInit {
     }
 
     onApplyClick() {
-        let userId = this.service.getUser().id;
+        let userId = this.service.userId;
         if (userId <= 0) {
             this.alert('Please login first.');
             return;
@@ -49,7 +49,7 @@ export class TeamViewComponent implements OnInit {
     }
 
     onSubscriptClick() {
-        let userId = this.service.getUser().id;
+        let userId = this.service.userId;
         if (userId <= 0) {
             this.alert('Please login first.');
             return;

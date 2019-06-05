@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
     public teamsRecent: Array<TeamModel>;
 
     constructor(private service: TeamupService) {
-        this.lang = this.service.getLanguage();
+        this.lang = this.service.language;
 
         let today = new MyDatetime();
         today.addDays(-7);
@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
 
     switchLanguage(lang) {
         this.lang = lang;
-        this.service.setLanguage(this.lang);
+        this.service.language = this.lang;
     }
 
     onLoginClick() {
@@ -97,10 +97,9 @@ export class HomeComponent implements OnInit {
     }
 
     onLogoutClick() {
-        this.service.setUsername('');
-        this.service.setSession('');
-        this.service.setUser(null);
-        this.user = this.service.getUser();
+        this.service.username = '';
+        this.service.setToken('');
+        //this.user = this.service.getUser();
     }
 
     openTeamView(team: TeamModel) {

@@ -26,7 +26,7 @@ export class MyProfileComponent implements OnInit {
     };
 
     constructor(private service: TeamupService) {
-        this.user = this.service.getUser();
+        //this.user = this.service.getUser();
         this.dataChanged = false;
         this.updateUserProfile();
     }
@@ -48,7 +48,7 @@ export class MyProfileComponent implements OnInit {
             resp => {
                 console.log(resp);
                 if (resp['success']) {
-                    this.service.setUser(this.user);
+                    //this.service.setUser(this.user);
                     this.dataChanged = false;
                     //this.navCtrl.pop();
                 } else {
@@ -84,7 +84,7 @@ export class MyProfileComponent implements OnInit {
                 console.log(resp);
                 if (resp['success']) {
                     this.user = resp['data']['user'];
-                    this.service.setUser(this.user);
+                    //this.service.setUser(this.user);
                 } else {
                     this.alert(resp['msg']);
                 }

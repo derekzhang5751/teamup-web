@@ -14,3 +14,19 @@ interface Team {
     location: string,
     desc: string
 }
+
+interface User {
+    id: number;
+    username: string;
+    level: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    mobile: string;
+    sex: number;
+    birthday: string;
+    reg_time: string;
+    desc: string;
+    photo_url: string;
+    source: string;
+}

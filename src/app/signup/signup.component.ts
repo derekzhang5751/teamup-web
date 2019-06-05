@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
     public loginType = 'moreppl';
 
     constructor(private service: TeamupService) {
-        this.lang = this.service.getLanguage();
+        this.lang = this.service.language;
     }
 
     ngOnInit(): void {
@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
 
     switchLanguage(lang) {
         this.lang = lang;
-        this.service.setLanguage(this.lang);
+        this.service.language = this.lang;
     }
 
     onLoginClick() {
@@ -60,9 +60,9 @@ export class SignupComponent implements OnInit {
             resp => {
                 console.log(resp);
                 if (resp['success']) {
-                    this.service.setUsername(this.username);
-                    this.service.setSession(resp['data']['session']);
-                    this.service.setUser(resp['data']['user']);
+                    this.service.username = this.username;
+                    this.service.setToken(resp['data']['session']);
+                    //this.service.setUser(resp['data']['user']);
                     //this.events.publish('teamup:login');
                     //this.navCtrl.popToRoot();
                 } else {

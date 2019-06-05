@@ -17,74 +17,62 @@ export class TeamupService {
         })
     };
 
-    private lang = 'cn';
-    private username = '';
-    private session = '';
-    private user = {
-        id: 0,
-        username: '',
-        level: 0,
-        first_name: '',
-        last_name: '',
-        email: '',
-        mobile: '',
-        sex: 0,
-        birthday: '',
-        reg_time: '',
-        desc: '',
-        photo_url: '',
-        source: ''
-    };
+    private _token = '';
 
     constructor(private http: HttpClient) {
         //console.log('TeamupService constructor');
-    }
-
-    public setLanguage(lang) {
-        this.lang = lang;
-    }
-    public getLanguage() {
-        return this.lang;
-    }
-    public setUsername(username) {
-        this.username = username;
-    }
-    public getUsername() {
-        return this.username;
-    }
-    public setSession(session) {
-        this.session = session;
-    }
-    public getSession() {
-        return this.session;
-    }
-    public setUser(user) {
-        if (user) {
-            this.user = user;
-        } else {
-            this.user = {
-                id: 0,
-                username: '',
-                level: 0,
-                first_name: '',
-                last_name: '',
-                email: '',
-                mobile: '',
-                sex: 0,
-                birthday: '',
-                reg_time: '',
-                desc: '',
-                photo_url: '',
-                source: ''
-            };
+        this._token = this.readData('token');
+        if (this._token == null) {
+            this._token = '';
+        }
+        this._username = this.readData('username');
+        if (this._username == null) {
+            this._username = '';
+        }
+        this._lang = this.readData('lang');
+        if (this._lang == null) {
+            this._lang = 'cn';
+        }
+        this._userId = +this.readData('userid');
+        if (this._userId == null) {
+            this._userId = 0;
         }
     }
-    public getUser() {
-        return this.user;
+
+    private _lang = 'cn';
+    public set language(lang: string) {
+        this._lang = lang;
+        this.saveData('lang', this._lang);
+    }
+    public get language(): string {
+        return this._lang;
     }
 
+    private _username = '';
+    public set username(username: string) {
+        this._username = username;
+        this.saveData('username', this._username);
+    }
+    public get username(): string {
+        return this._username;
+    }
+
+    private _userId = 0;
+    public get userId(): number {
+        return this._userId;
+    }
+    public set userId(id: number) {
+        this._userId = id;
+        this.saveData('userid', String(this._userId));
+    }
+
+    public setToken(token: string) {
+        this._token = token;
+        this.saveData('token', this._token);
+    }
+    
     public getApiUrl(url: string): string {
-        return this.domainUrl + url + '&session=' + this.session + '&DeviceType=1';
+        return this.domainUrl + url + '&session=' + this._token + '&DeviceType=1';
     }
 
     private postFormRequest(url: string, data: string): Observable<Object> {
@@ -179,4 +167,23 @@ export class TeamupService {
             return of(result as T);
         };
     }
+
+    private saveData(key: string, value: string) {
+        if (window.localStorage) {
+            localStorage.setItem(key, value);
+        } else {
+            console.log('Does NOT support Local Storage');
+        }
+    }
+
+    private readData(key: string): string {
+        let value: string;
+        if (window.localStorage) {
+            value = localStorage.getItem(key);
+        } else {
+            console.log('Does NOT support Local Storage');
+        }
+        return value;
+    }
+
 }

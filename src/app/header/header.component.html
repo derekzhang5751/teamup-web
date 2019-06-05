@@ -5,10 +5,13 @@
         <li class="nav-item">
             <a class="nav-link active" href="#">Build Your Team</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="username.length > 0">
+            <a class="nav-link" href="/signup">Welcome {{username}}</a>
+        </li>
+        <li class="nav-item" *ngIf="username.length == 0">
             <a class="nav-link" href="/signup">Sign up</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="username.length == 0">
             <a class="nav-link" href="/login">Log in</a>
         </li>
     </ul>
