@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { TeamupService } from '../../app/teamup.service';
-import { LoginComponent } from '../login/login.component';
 
+declare var $: any;
 
 @Component({
     selector: 'app-signup',
@@ -15,16 +14,17 @@ export class SignupComponent implements OnInit {
     public password = '';
     public password2 = '';
     public loginType = 'moreppl';
+    public alertMsg: string = '';
 
-    constructor(private service: TeamupService) {
-        this.lang = this.service.language;
-    }
+    constructor(private service: TeamupService) { }
 
     ngOnInit(): void {
         console.log('singup oninit');
+        $('.alert').alert('close');
+        this.lang = this.service.language;
     }
 
-    switchLanguage(lang) {
+    switchLanguage(lang: string) {
         this.lang = lang;
         this.service.language = this.lang;
     }
@@ -34,10 +34,14 @@ export class SignupComponent implements OnInit {
     }
 
     onSignupClick() {
+        console.log(this.username);
+        console.log(this.password);
+        console.log(this.password2);
         if (this.password == this.password2) {
             this.doSignup('moreppl');
         } else {
-            //this.alert(this.translate.instant('PWD-NOT-SAME'));
+            //this.alert('Password are not same!');
+            $('.alert').alert();
         }
     }
 
@@ -46,6 +50,7 @@ export class SignupComponent implements OnInit {
             resp => {
                 console.log(resp);
                 if (resp['success']) {
+                    this.alert('Register success, please check out your email and activate your account.');
                     //this.alert(this.translate.instant('SIGNIN-OK-MSG'));
                     //this.navCtrl.popToRoot();
                 } else {
@@ -96,6 +101,7 @@ export class SignupComponent implements OnInit {
     }
 
     private alert(msg: string) {
-        //
+        this.alertMsg = msg;
+        $('.alert').alert();
     }
 }

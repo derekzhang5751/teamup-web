@@ -70,7 +70,7 @@ export class TeamupService {
         this._token = token;
         this.saveData('token', this._token);
     }
-    
+
     public getApiUrl(url: string): string {
         return this.domainUrl + url + '&session=' + this._token + '&DeviceType=1';
     }
@@ -91,7 +91,7 @@ export class TeamupService {
             );
     }
 
-    public apiUserLogin(username, password, source, name, image, token): Observable<Object> {
+    public apiUserLogin(username: string, password: string, source: string, name: string, image: string, token: string): Observable<Object> {
         let url = this.getApiUrl('/User/User/do.php?action=login');
         let data = {
             username: username,
