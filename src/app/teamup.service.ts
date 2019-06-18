@@ -116,39 +116,45 @@ export class TeamupService {
         return this.postJsonRequest(url, data);
     }
 
-    public apiSaveUserProfile(user): Observable<Object> {
+    public apiActivateUserSignup(token: string): Observable<Object> {
+        let url = this.getApiUrl('/User/Activate/do.php?action=activate');
+        let data = "code=" + token;
+        return this.postFormRequest(url, data);
+    }
+
+    public apiSaveUserProfile(user: any): Observable<Object> {
         let url = this.getApiUrl('/User/User/do.php?action=save_profile');
         return this.postJsonRequest(url, user);
     }
 
-    public apiGetUserProfile($userId): Observable<Object> {
+    public apiGetUserProfile(userId: number): Observable<Object> {
         let url = this.getApiUrl('/User/User/do.php?action=get_user');
-        let data = "userid=" + $userId;
+        let data = "userid=" + userId as string;
         return this.postFormRequest(url, data);
     }
 
-    public apiCreateTeamOfUser(team): Observable<Object> {
+    public apiCreateTeamOfUser(team: any): Observable<Object> {
         let url = this.getApiUrl('/Team/Team/do.php?action=create_team');
         return this.postJsonRequest(url, team);
     }
 
-    public apiSearchTeams(condition): Observable<Object> {
+    public apiSearchTeams(condition: any): Observable<Object> {
         let url = this.getApiUrl('/Team/Team/do.php?action=search_team');
         return this.postJsonRequest(url, condition);
     }
 
-    public apiApplyTeam(apply): Observable<Object> {
+    public apiApplyTeam(apply: any): Observable<Object> {
         let url = this.getApiUrl('/Team/Team/do.php?action=apply_team');
         return this.postJsonRequest(url, apply);
     }
 
-    public apiGetApplyList(teamId): Observable<Object> {
+    public apiGetApplyList(teamId: number): Observable<Object> {
         let url = this.getApiUrl('/Team/Team/do.php?action=list_apply');
-        let data = "teamid=" + teamId;
+        let data = "teamid=" + teamId as string;
         return this.postFormRequest(url, data);
     }
 
-    public apiAcceptApply(apply): Observable<Object> {
+    public apiAcceptApply(apply: any): Observable<Object> {
         let url = this.getApiUrl('/Team/Team/do.php?action=accept_apply');
         return this.postJsonRequest(url, apply);
     }
