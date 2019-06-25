@@ -8,6 +8,9 @@
         <li class="nav-item" *ngIf="username.length > 0">
             <a class="nav-link" href="/signup">Welcome {{username}}</a>
         </li>
+        <li class="nav-item" *ngIf="username.length > 0">
+            <a class="nav-link" href="javascript:void(0)" (click)="onLogout()">Log out</a>
+        </li>
         <li class="nav-item" *ngIf="username.length == 0">
             <a class="nav-link" href="/signup">Sign up</a>
         </li>

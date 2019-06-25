@@ -11,19 +11,22 @@ import { SignupComponent } from '../signup/signup.component';
 })
 export class LoginComponent implements OnInit {
     public lang: string;
-    public username = '';
-    public password = '';
-    public loginType = 'moreppl';
+    public username: string;
+    public password: string;
+    public rememberMe: boolean;
+    public loginType: string;
 
-    constructor(private service: TeamupService) {
-        this.lang = this.service.language;
-    }
+    constructor(private service: TeamupService) { }
 
     ngOnInit(): void {
-        console.log('login oninit');
+        this.lang = this.service.language;
+        this.username = '';
+        this.password = '';
+        this.rememberMe = false;
+        this.loginType = 'moreppl';
     }
 
-    switchLanguage(lang) {
+    switchLanguage(lang: string) {
         this.lang = lang;
         this.service.language = this.lang;
     }
@@ -33,6 +36,7 @@ export class LoginComponent implements OnInit {
     }
 
     onLoginClick() {
+        //console.log('On Login', this.username, this.password, this.rememberMe);
         this.doLogin('moreppl', '', '', '');
     }
 

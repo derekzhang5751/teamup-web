@@ -16,4 +16,10 @@ export class HeaderComponent implements OnInit {
         console.log('username', this.username);
     }
 
+    onLogout() {
+        this.service.username = '';
+        this.service.setToken('');
+        window.open('home', '_self');
+    }
+
 }
