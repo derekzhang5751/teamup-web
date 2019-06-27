@@ -9,29 +9,28 @@ import { UploadComponent } from '../upload/upload.component';
 })
 export class MyProfileComponent implements OnInit {
     public dataChanged = false;
-    public user = {
-        id: 0,
-        username: '',
-        level: 0,
-        first_name: '',
-        last_name: '',
-        email: '',
-        mobile: '',
-        sex: 0,
-        birthday: '',
-        reg_time: '',
-        desc: '',
-        photo_url: '',
-        source: ''
-    };
+    public user: User;
 
-    constructor(private service: TeamupService) {
-        //this.user = this.service.getUser();
-        this.dataChanged = false;
-        this.updateUserProfile();
-    }
+    constructor(private service: TeamupService) { }
 
     ngOnInit() {
+        this.user = {
+            id: 0,
+            username: 'Derek.Z',
+            level: 0,
+            first_name: 'Derek',
+            last_name: 'Zhang',
+            email: 'derekzhang5751@gmail.com',
+            mobile: '6478651048',
+            sex: 0,
+            birthday: '1990-12-23',
+            reg_time: '2019-01-01',
+            desc: 'My Description',
+            photo_url: '',
+            source: 'moreppl'
+        };
+        this.dataChanged = false;
+        //this.updateUserProfile();
     }
 
     onInputChanged() {

@@ -1,3 +1,111 @@
+<app-header></app-header>
 <nav>
-    
+    <div class="profile-frame">
+        <div class="row">
+            <div class="col-3">
+                <ul class="nav nav-pills flex-column" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                            role="tab" aria-controls="pills-profile" aria-selected="true">My Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-follows-tab" data-toggle="pill" href="#pills-follows" role="tab"
+                            aria-controls="pills-follows" aria-selected="false">My Follows</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-teams-tab" data-toggle="pill" href="#pills-teams" role="tab"
+                            aria-controls="pills-teams" aria-selected="false">My Teams</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-9 profile-right">
+                <div class="tab-content" id="pills-tabContent">
+                    <!-- My Profile -->
+                    <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                        aria-labelledby="pills-profile-tab">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="smiley.gif" alt="Smiley face" height="300" width="200">
+                                <button type="button" class="btn btn-outline-primary">Set Photo</button>
+                            </div>
+                            <div class="col-7">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Email</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-describedby="basic-addon3"
+                                        [(ngModel)]="user.email">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text input-title">Nickname</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-describedby="basic-addon3"
+                                        [(ngModel)]="user.username">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text input-title">First Name</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-describedby="basic-addon3"
+                                        [(ngModel)]="user.first_name">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text input-title">Last Name</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-describedby="basic-addon3"
+                                        [(ngModel)]="user.last_name">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text input-title">Level</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-describedby="basic-addon3"
+                                        [(ngModel)]="user.level">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text input-title">Mobile</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-describedby="basic-addon3"
+                                        [(ngModel)]="user.mobile">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text input-title">Gender</span>
+                                    </div>
+                                    <select class="custom-select" [(ngModel)]="user.sex">
+                                        <option [value]="0">Secret</option>
+                                        <option [value]="1">Female</option>
+                                        <option [value]="2">Male</option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text input-title">Birthday</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-describedby="basic-addon3"
+                                        [(ngModel)]="user.birthday">
+                                </div>
+                                <label>Description Myself</label>
+                                <div class="input-group mb-3">
+                                    <textarea class="form-control" aria-label="With textarea" rows="5"
+                                        [(ngModel)]="user.desc"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- My Follows -->
+                    <div class="tab-pane fade" id="pills-follows" role="tabpanel" aria-labelledby="pills-follows-tab">My
+                        Follows</div>
+                    <!-- My Teams -->
+                    <div class="tab-pane fade" id="pills-teams" role="tabpanel" aria-labelledby="pills-teams-tab">My
+                        Teams
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>
+<app-footer></app-footer>

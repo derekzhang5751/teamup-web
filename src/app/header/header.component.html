@@ -6,7 +6,7 @@
             <a class="nav-link active" href="#">Build Your Team</a>
         </li>
         <li class="nav-item" *ngIf="username.length > 0">
-            <a class="nav-link" href="/signup">Welcome {{username}}</a>
+            <a class="nav-link" href="/profile">Welcome {{username}}</a>
         </li>
         <li class="nav-item" *ngIf="username.length > 0">
             <a class="nav-link" href="javascript:void(0)" (click)="onLogout()">Log out</a>
