@@ -60,17 +60,17 @@ export class HomeComponent implements OnInit {
     constructor(private service: TeamupService) {
         this.lang = this.service.language;
 
-        let today = new MyDatetime();
+        const today = new MyDatetime();
         today.addDays(-7);
-        this.searchDate = today.format("yyyy-MM-dd");
-        this.searchCity = "Toronto";
+        this.searchDate = today.format('yyyy-MM-dd');
+        this.searchCity = 'Toronto';
         this.teamsRecent = [];
         this.teamsRecommended = [];
     }
 
     ngOnInit() {
         console.log('home on init');
-        $(".home_datetime").datetimepicker({
+        $('.home_datetime').datetimepicker({
             format: 'yyyy-mm-dd',
             autoclose: true,
             todayBtn: true,

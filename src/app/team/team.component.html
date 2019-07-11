@@ -1,3 +1,68 @@
+<app-header></app-header>
 <nav>
-    
+    <div class="newteam-frame">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Team Title</span>
+            </div>
+            <input type="text" class="form-control" aria-describedby="basic-addon3" [(ngModel)]="team.title">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text input-title">Team Type</span>
+            </div>
+            <select class="custom-select" [(ngModel)]="team.category">
+                <option [value]="0">Entertainment</option>
+                <option [value]="1">Bussiness</option>
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text input-title">Activity Time</span>
+            </div>
+            <input type="text" class="form-control" aria-describedby="basic-addon3" [(ngModel)]="team.time_begin">
+            <input type="text" class="form-control" aria-describedby="basic-addon3" [(ngModel)]="team.time_end">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text input-title">Location</span>
+            </div>
+            <input type="text" class="form-control" aria-describedby="basic-addon3" [(ngModel)]="team.location">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text input-title">People</span>
+            </div>
+            <input type="text" class="form-control" aria-describedby="basic-addon3" [(ngModel)]="team.people">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text input-title">Drop Period(Self)</span>
+            </div>
+            <input type="text" class="form-control" aria-describedby="basic-addon3" [(ngModel)]="team.dp_self">
+            <div class="input-group-prepend">
+                <span class="input-group-text input-title">Drop Period(Other)</span>
+            </div>
+            <input type="text" class="form-control" aria-describedby="basic-addon3" [(ngModel)]="team.dp_other">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="checkbox" aria-label="Checkbox for following text input"
+                        [(ngModel)]="team.need_review">
+                </div>
+            </div>
+            <input type="text" class="form-control" aria-label="Text input with checkbox"
+                value="Need Review, when people request to join" readonly>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text input-title">Description</span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" rows="5" [(ngModel)]="team.desc"></textarea>
+        </div>
+        <div class="mx-auto" style="width: 100%; text-align: center;">
+            <button type="button" class="btn btn-primary">Create</button>
+        </div>
+    </div>
 </nav>

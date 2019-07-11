@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class TeamupService {
-    //private domainUrl = 'http://www.moreppl.com/main';
+    // private domainUrl = 'http://www.moreppl.com/main';
     private domainUrl = 'http://teamup.loc';
 
     private httpOptions = {
@@ -20,7 +20,7 @@ export class TeamupService {
     private _token = '';
 
     constructor(private http: HttpClient) {
-        //console.log('TeamupService constructor');
+        // console.log('TeamupService constructor');
         this._token = this.readData('token');
         if (this._token == null) {
             this._token = '';
@@ -92,49 +92,49 @@ export class TeamupService {
     }
 
     public apiUserLogin(username: string, password: string, source: string, name: string, image: string, token: string): Observable<Object> {
-        let url = this.getApiUrl('/User/User/do.php?action=login');
-        let data = {
-            username: username,
-            password: password,
+        const url = this.getApiUrl('/User/User/do.php?action=login');
+        const data = {
+            username,
+            password,
             dev_type: 'Browser',
-            source: source,
-            name: name,
-            image: image,
-            token: token
+            source,
+            name,
+            image,
+            token
         };
         return this.postJsonRequest(url, data);
     }
 
     public apiUserSignup(username: string, password: string, source: string): Observable<Object> {
-        let url = this.getApiUrl('/User/User/do.php?action=signup');
-        let data = {
-            username: username,
-            password: password,
+        const url = this.getApiUrl('/User/User/do.php?action=signup');
+        const data = {
+            username,
+            password,
             name_type: 'email',
-            source: source
+            source
         };
         return this.postJsonRequest(url, data);
     }
 
     public apiActivateUserSignup(token: string): Observable<Object> {
-        let url = this.getApiUrl('/User/Activate/do.php?action=activate');
-        let data = "code=" + token;
+        const url = this.getApiUrl('/User/Activate/do.php?action=activate');
+        const data = 'code=' + token;
         return this.postFormRequest(url, data);
     }
 
     public apiSaveUserProfile(user: any): Observable<Object> {
-        let url = this.getApiUrl('/User/User/do.php?action=save_profile');
+        const url = this.getApiUrl('/User/User/do.php?action=save_profile');
         return this.postJsonRequest(url, user);
     }
 
     public apiGetUserProfile(userId: number): Observable<Object> {
-        let url = this.getApiUrl('/User/User/do.php?action=get_user');
-        let data = "userid=" + userId as string;
+        const url = this.getApiUrl('/User/User/do.php?action=get_user');
+        const data = 'userid=' + userId as string;
         return this.postFormRequest(url, data);
     }
 
     public apiCreateTeamOfUser(team: any): Observable<Object> {
-        let url = this.getApiUrl('/Team/Team/do.php?action=create_team');
+        const url = this.getApiUrl('/Team/Team/do.php?action=create_team');
         return this.postJsonRequest(url, team);
     }
 
@@ -144,18 +144,18 @@ export class TeamupService {
     }
 
     public apiApplyTeam(apply: any): Observable<Object> {
-        let url = this.getApiUrl('/Team/Team/do.php?action=apply_team');
+        const url = this.getApiUrl('/Team/Team/do.php?action=apply_team');
         return this.postJsonRequest(url, apply);
     }
 
     public apiGetApplyList(teamId: number): Observable<Object> {
-        let url = this.getApiUrl('/Team/Team/do.php?action=list_apply');
-        let data = "teamid=" + teamId as string;
+        const url = this.getApiUrl('/Team/Team/do.php?action=list_apply');
+        const data = 'teamid=' + teamId as string;
         return this.postFormRequest(url, data);
     }
 
     public apiAcceptApply(apply: any): Observable<Object> {
-        let url = this.getApiUrl('/Team/Team/do.php?action=accept_apply');
+        const url = this.getApiUrl('/Team/Team/do.php?action=accept_apply');
         return this.postJsonRequest(url, apply);
     }
 

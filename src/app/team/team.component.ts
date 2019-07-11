@@ -32,7 +32,7 @@ export class TeamComponent implements OnInit {
     ngOnInit() {
         this.applyList = [];
         this.mode = this.route.snapshot.paramMap.get('mode');
-        if (this.mode == 'create') {
+        if (this.mode === 'create') {
             this.team = {
                 id: 0,
                 author: this.service.userId,
@@ -50,15 +50,15 @@ export class TeamComponent implements OnInit {
                 desc: ''
             };
             this.title = 'Build Your Team';
-            let today = new MyDatetime();
-            this.beginMin = today.format("yyyy-MM-dd");
+            const today = new MyDatetime();
+            this.beginMin = today.format('yyyy-MM-dd');
             today.addMonths(6);
-            this.beginMax = today.format("yyyy-MM-dd");
+            this.beginMax = today.format('yyyy-MM-dd');
             this.endMin = this.beginMin;
             this.endMax = this.beginMax;
         } else {
-            let id = this.route.snapshot.paramMap.get('id');
-            //this.team = params.get('team');
+            const id = this.route.snapshot.paramMap.get('id');
+            // this.team = params.get('team');
             this.title = this.team.title;
             this.beginMin = '2018-01-01';
             this.beginMax = '2068-01-01';
@@ -80,7 +80,7 @@ export class TeamComponent implements OnInit {
     }
 
     onCloseClick() {
-        //this.navCtrl.pop();
+        // this.navCtrl.pop();
     }
 
     onSaveClick() {
@@ -88,7 +88,7 @@ export class TeamComponent implements OnInit {
             resp => {
                 console.log(resp);
                 if (resp['success']) {
-                    //this.navCtrl.pop();
+                    // this.navCtrl.pop();
                 } else {
                     this.alert(resp['msg']);
                 }
