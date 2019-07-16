@@ -9,6 +9,10 @@
                             role="tab" aria-controls="pills-profile" aria-selected="true">My Profile</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" id="pills-password-tab" data-toggle="pill" href="#pills-password" role="tab"
+                            aria-controls="pills-password" aria-selected="false">Change Password</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" id="pills-follows-tab" data-toggle="pill" href="#pills-follows" role="tab"
                             aria-controls="pills-follows" aria-selected="false">My Follows</a>
                     </li>
@@ -94,6 +98,33 @@
                                         [(ngModel)]="user.desc"></textarea>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <!-- Change Password -->
+                    <div class="tab-pane fade" id="pills-password" role="tabpanel" aria-labelledby="pills-password-tab">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text input-pass-title">Old Password</span>
+                            </div>
+                            <input type="text" class="form-control" aria-describedby="basic-addon3"
+                                [(ngModel)]="oldPass">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text input-pass-title">New Password</span>
+                            </div>
+                            <input type="text" class="form-control" aria-describedby="basic-addon3"
+                                [(ngModel)]="newPass1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text input-pass-title">Repeat New Password</span>
+                            </div>
+                            <input type="text" class="form-control" aria-describedby="basic-addon3"
+                                [(ngModel)]="newPass2">
+                        </div>
+                        <div class="mx-auto" style="width: 100%; text-align: center;">
+                            <button type="button" class="btn btn-primary">Change Password</button>
                         </div>
                     </div>
                     <!-- My Follows -->

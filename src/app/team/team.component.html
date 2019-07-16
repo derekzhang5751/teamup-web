@@ -62,7 +62,29 @@
             <textarea class="form-control" aria-label="With textarea" rows="5" [(ngModel)]="team.desc"></textarea>
         </div>
         <div class="mx-auto" style="width: 100%; text-align: center;">
-            <button type="button" class="btn btn-primary">Create</button>
+            <button type="button" class="btn btn-primary">Cancel</button>&nbsp;
+            <button type="button" class="btn btn-primary">Save Team</button>&nbsp;
+            <button type="button" class="btn btn-primary">Upload Photo</button>
+        </div>
+        <!-- Picture List -->
+        <div class="pic-container">
+            <div class="team-pic-frame">
+                <img class="team-pic" src="pic_trulli.jpg" alt="Trulli">
+                <button type="button" class="btn btn-primary">Delete</button>
+            </div>
+            <div class="team-pic-frame">
+                <img class="team-pic" src="pic_trulli.jpg" alt="Trulli">
+                <button type="button" class="btn btn-primary">Delete</button>
+            </div>
+            <div class="team-pic-frame">
+                <img class="team-pic" src="pic_trulli.jpg" alt="Trulli">
+                <button type="button" class="btn btn-primary">Delete</button>
+            </div>
+            <div class="team-pic-frame">
+                <img class="team-pic" src="pic_trulli.jpg" alt="Trulli">
+                <button type="button" class="btn btn-primary">Delete</button>
+            </div>
         </div>
     </div>
 </nav>
+<app-footer></app-footer>

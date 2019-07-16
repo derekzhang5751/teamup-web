@@ -10,6 +10,9 @@ import { UploadComponent } from '../upload/upload.component';
 export class MyProfileComponent implements OnInit {
     public dataChanged = false;
     public user: User;
+    public oldPass = '';
+    public newPass1 = '';
+    public newPass2 = '';
 
     constructor(private service: TeamupService) { }
 
