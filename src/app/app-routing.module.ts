@@ -8,6 +8,7 @@ import { TeamViewComponent } from './team-view/team-view.component';
 import { UploadComponent } from './upload/upload.component';
 import { ActivateComponent } from './activate/activate.component';
 import { TeamComponent } from './team/team.component';
+import { MyMessagesComponent } from './my-messages/my-messages.component';
 
 // const rootPath = 'iot-monitor-dashboard/';
 const rootPath = '';
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: rootPath + 'profile', component: MyProfileComponent },
     { path: rootPath + 'team/:mode/:id', component: TeamViewComponent },
     { path: rootPath + 'myteam/:mode/:id', component: TeamComponent },
+    { path: rootPath + 'message/:userid', component: MyMessagesComponent },
     { path: rootPath + 'upload', component: UploadComponent }
 ];
 

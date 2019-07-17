@@ -1,3 +1,41 @@
+<app-header></app-header>
 <nav>
-    
+    <div class="profile-frame">
+        <div class="row">
+            <div class="col-3">
+                <ul class="nav nav-pills flex-column" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                            role="tab" aria-controls="pills-profile" aria-selected="true">User 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-password-tab" data-toggle="pill" href="#pills-password" role="tab"
+                            aria-controls="pills-password" aria-selected="false">User 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-follows-tab" data-toggle="pill" href="#pills-follows" role="tab"
+                            aria-controls="pills-follows" aria-selected="false">User 3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-teams-tab" data-toggle="pill" href="#pills-teams" role="tab"
+                            aria-controls="pills-teams" aria-selected="false">User 4</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-9 profile-right">
+                <div class="tab-content" id="pills-tabContent">
+                    <div>
+                        <p>Message sent from my iPhone</p>
+                    </div>
+                    <div class="input-group mb-3">
+                        <textarea class="form-control" aria-label=""></textarea>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>
+<app-footer></app-footer>
