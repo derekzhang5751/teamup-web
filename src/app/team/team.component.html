@@ -20,8 +20,8 @@
             <div class="input-group-prepend">
                 <span class="input-group-text input-title">Activity Time</span>
             </div>
-            <input type="text" class="form-control" aria-describedby="basic-addon3" [(ngModel)]="team.time_begin">
-            <input type="text" class="form-control" aria-describedby="basic-addon3" [(ngModel)]="team.time_end">
+            <input type="text" class="form-control team_datetime" aria-describedby="basic-addon3" [(ngModel)]="team.time_begin">
+            <input type="text" class="form-control team_datetime" aria-describedby="basic-addon3" [(ngModel)]="team.time_end">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -62,9 +62,9 @@
             <textarea class="form-control" aria-label="With textarea" rows="5" [(ngModel)]="team.desc"></textarea>
         </div>
         <div class="mx-auto" style="width: 100%; text-align: center;">
-            <button type="button" class="btn btn-primary">Cancel</button>&nbsp;
-            <button type="button" class="btn btn-primary">Save Team</button>&nbsp;
-            <button type="button" class="btn btn-primary">Upload Photo</button>
+            <button type="button" class="btn btn-primary" (click)="onCancelClick()">Cancel</button>&nbsp;
+            <button type="button" class="btn btn-primary" (click)="onSaveTeamClick()">Save Team</button>&nbsp;
+            <button type="button" class="btn btn-primary" (click)="onUploadPhotoClick()">Upload Photo</button>
         </div>
         <!-- Picture List -->
         <div class="pic-container">

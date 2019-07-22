@@ -36,21 +36,21 @@ export class LoginComponent implements OnInit {
     }
 
     onLoginClick() {
-        //console.log('On Login', this.username, this.password, this.rememberMe);
+        // console.log('On Login', this.username, this.password, this.rememberMe);
         this.doLogin('moreppl', '', '', '');
     }
 
     doLogin(source: string, name: string, image: string, token: string) {
         this.service.apiUserLogin(this.username, this.password, source, name, image, token).subscribe(
-            resp => {
+            (resp: any) => {
                 console.log(resp);
-                if (resp['success']) {
+                if (resp.success) {
                     this.service.username = this.username;
-                    this.service.setToken(resp['data']['session']);
-                    //this.service.setUser(resp['data']['user']);
+                    this.service.setToken(resp.data.session);
+                    // this.service.setUser(resp.data.user);
                     window.open('home', '_self');
                 } else {
-                    this.alert(resp['msg']);
+                    this.alert(resp.msg);
                 }
             }
         );

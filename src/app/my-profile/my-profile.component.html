@@ -97,6 +97,7 @@
                                     <textarea class="form-control" aria-label="With textarea" rows="5"
                                         [(ngModel)]="user.desc"></textarea>
                                 </div>
+                                <button type="button" class="btn btn-outline-primary" (click)="onSaveClick()">Update</button>
                             </div>
                         </div>
                     </div>
@@ -124,7 +125,7 @@
                                 [(ngModel)]="newPass2">
                         </div>
                         <div class="mx-auto" style="width: 100%; text-align: center;">
-                            <button type="button" class="btn btn-primary">Change Password</button>
+                            <button type="button" class="btn btn-primary" (click)="onChangePassword()">Change Password</button>
                         </div>
                     </div>
                     <!-- My Follows -->

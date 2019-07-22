@@ -11,23 +11,6 @@ import { from } from 'rxjs';
 
 declare var $: any;
 
-interface TeamModel {
-    id: number;
-    author: number,
-    category: number,
-    time_begin: string,
-    time_end: string,
-    need_review: boolean,
-    dp_self: number,
-    dp_other: number,
-    create_time: string,
-    status: number,
-    people: string,
-    title: string,
-    location: string,
-    desc: string
-};
-
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -37,25 +20,15 @@ export class HomeComponent implements OnInit {
     public lang: string;
     public searchDate: string;
     public searchCity: string;
-    public user = {
-        id: 0,
-        username: '',
-        first_name: '',
-        last_name: '',
-        email: '',
-        mobile: '',
-        reg_time: '',
-        desc: ''
-    };
     public searchCondition = {
         user_id: 0,
         text: '',
         category: 0,
         city: 'Toronto',
         status: 0
-    }
-    public teamsRecommended: Array<TeamModel>;
-    public teamsRecent: Array<TeamModel>;
+    };
+    public teamsRecommended: Array<Team>;
+    public teamsRecent: Array<Team>;
 
     constructor(private service: TeamupService) {
         this.lang = this.service.language;
@@ -96,26 +69,20 @@ export class HomeComponent implements OnInit {
         window.open('profile', '_self');
     }
 
-    onLogoutClick() {
-        this.service.username = '';
-        this.service.setToken('');
-        //this.user = this.service.getUser();
-    }
-
-    openTeamView(team: TeamModel) {
-        window.open('team/browser/' + team.id, '_self');
+    openTeamView(team: Team) {
+        window.open('team/view/' + team.id, '_self');
     }
 
     openNewTeam() {
-        window.open('team/create/0', '_self');
+        window.open('myteam/create/0', '_self');
     }
 
-    reviewTeam(team) {
+    reviewTeam(team: Team) {
         window.open('team/review/' + team.id, '_self');
     }
 
-    onTeamClick(team: TeamModel) {
-        if (team.author == this.user.id) {
+    onTeamClick(team: Team) {
+        if (team.author === this.service.userId) {
             this.reviewTeam(team);
         } else {
             this.openTeamView(team);
@@ -125,18 +92,19 @@ export class HomeComponent implements OnInit {
     doSearch() {
         this.searchCondition.user_id = 0;
         this.service.apiSearchTeams(this.searchCondition).subscribe(
-            resp => {
+            (resp: any) => {
                 console.log(resp);
-                if (resp['success']) {
-                    this.teamsRecommended = resp['data'];
-                    this.teamsRecent = resp['data'];
+                if (resp.success) {
+                    this.teamsRecommended = resp.data;
+                    this.teamsRecent = resp.data;
                 } else {
-                    //
+                    this.alert(resp.msg);
                 }
             }
         );
     }
 
     private alert(msg: string) {
+        console.log('Alert:', msg);
     }
 }

@@ -33,28 +33,24 @@ export class MyProfileComponent implements OnInit {
             source: 'moreppl'
         };
         this.dataChanged = false;
-        //this.updateUserProfile();
+        this.updateUserProfile();
     }
 
     onInputChanged() {
-        //console.log('Something is changed');
+        // console.log('Something is changed');
         this.dataChanged = true;
-    }
-
-    onCloseClick() {
-        //this.navCtrl.pop();
     }
 
     onSaveClick() {
         this.service.apiSaveUserProfile(this.user).subscribe(
-            resp => {
+            (resp: any) => {
                 console.log(resp);
-                if (resp['success']) {
-                    //this.service.setUser(this.user);
+                if (resp.success) {
+                    // this.service.setUser(this.user);
                     this.dataChanged = false;
-                    //this.navCtrl.pop();
+                    // this.navCtrl.pop();
                 } else {
-                    this.alert(resp['msg']);
+                    this.alert(resp.msg);
                 }
             }
         );
@@ -80,21 +76,34 @@ export class MyProfileComponent implements OnInit {
         uploadModal.present();*/
     }
 
+    onChangePassword() {
+        this.service.apiChangePassword(this.user.id, this.oldPass, this.newPass1).subscribe(
+            (resp: any) => {
+                console.log(resp);
+                if (resp.success) {
+                    this.alert('Your password has been changed.');
+                } else {
+                    this.alert(resp.msg);
+                }
+            }
+        );
+    }
+
     private updateUserProfile() {
         this.service.apiGetUserProfile(this.user.id).subscribe(
-            resp => {
+            (resp: any) => {
                 console.log(resp);
-                if (resp['success']) {
-                    this.user = resp['data']['user'];
-                    //this.service.setUser(this.user);
+                if (resp.success) {
+                    this.user = resp.data.user;
+                    this.alert('Your profile has been updated.');
                 } else {
-                    this.alert(resp['msg']);
+                    this.alert(resp.msg);
                 }
             }
         );
     }
 
     private alert(msg: string) {
-        //
+        console.log('Alert', msg);
     }
 }

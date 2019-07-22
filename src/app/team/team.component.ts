@@ -3,6 +3,8 @@ import { TeamupService } from '../../app/teamup.service';
 import { MyDatetime } from '../../app/mydatetime';
 import { ActivatedRoute } from '@angular/router';
 
+declare var $: any;
+
 @Component({
     selector: 'app-team',
     templateUrl: './team.component.html',
@@ -30,6 +32,14 @@ export class TeamComponent implements OnInit {
     }
 
     ngOnInit() {
+        $('.home_datetime').datetimepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayBtn: true,
+            todayHighlight: true,
+            minView: 2
+        });
+
         this.applyList = [];
         this.mode = this.route.snapshot.paramMap.get('mode');
         if (this.mode === 'create') {
@@ -79,31 +89,35 @@ export class TeamComponent implements OnInit {
         console.log(this.team.time_end);
     }
 
-    onCloseClick() {
+    onCancelClick() {
         // this.navCtrl.pop();
     }
 
-    onSaveClick() {
+    onSaveTeamClick() {
         this.service.apiCreateTeamOfUser(this.team).subscribe(
-            resp => {
+            (resp: any) => {
                 console.log(resp);
-                if (resp['success']) {
-                    // this.navCtrl.pop();
+                if (resp.success) {
+                    this.team.id = resp.data.userId;
                 } else {
-                    this.alert(resp['msg']);
+                    this.alert(resp.msg);
                 }
             }
         );
     }
 
+    onUploadPhotoClick() {
+        //
+    }
+
     onAcceptClick(apply) {
         this.service.apiAcceptApply(apply).subscribe(
-            resp => {
+            (resp: any) => {
                 console.log(resp);
-                if (resp['success']) {
+                if (resp.success) {
                     apply.status = 2;
                 } else {
-                    this.alert(resp['msg']);
+                    this.alert(resp.msg);
                 }
             }
         );
@@ -111,10 +125,10 @@ export class TeamComponent implements OnInit {
 
     private updateApplyList() {
         this.service.apiGetApplyList(this.team.id).subscribe(
-            resp => {
+            (resp: any) => {
                 console.log(resp);
-                if (resp['success']) {
-                    this.applyList = resp['data']['users'];
+                if (resp.success) {
+                    this.applyList = resp.data.users;
                 }
             }
         );

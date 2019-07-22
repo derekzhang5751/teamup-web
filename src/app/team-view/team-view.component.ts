@@ -31,12 +31,12 @@ export class TeamViewComponent implements OnInit {
 
     ngOnInit() {
         this.mode = this.route.snapshot.paramMap.get('mode');
-        //this.team.id = this.route.snapshot.paramMap.get('id') as number;
+        // this.team.id = this.route.snapshot.paramMap.get('id') as number;
         console.log(this.team);
     }
 
     onCloseClick() {
-        //this.navCtrl.pop();
+        // this.navCtrl.pop();
     }
 
     onApplyClick() {
