@@ -23,16 +23,14 @@ export class TeamComponent implements OnInit {
         user_photo: string
     }>;
     public title: string;
-    public beginMin: string;
-    public beginMax: string;
-    public endMin: string;
-    public endMax: string;
+    public minDate: string;
+    public maxDate: string;
 
     constructor(private route: ActivatedRoute, private service: TeamupService,) {
     }
 
     ngOnInit() {
-        $('.home_datetime').datetimepicker({
+        $('.team_datetime').datetimepicker({
             format: 'yyyy-mm-dd',
             autoclose: true,
             todayBtn: true,
@@ -61,19 +59,15 @@ export class TeamComponent implements OnInit {
             };
             this.title = 'Build Your Team';
             const today = new MyDatetime();
-            this.beginMin = today.format('yyyy-MM-dd');
-            today.addMonths(6);
-            this.beginMax = today.format('yyyy-MM-dd');
-            this.endMin = this.beginMin;
-            this.endMax = this.beginMax;
+            this.minDate = today.format('yyyy-MM-dd');
+            today.addDays(3);
+            this.maxDate = today.format('yyyy-MM-dd');
+            this.team.time_begin = this.minDate;
+            this.team.time_end = this.maxDate;
         } else {
             const id = this.route.snapshot.paramMap.get('id');
             // this.team = params.get('team');
             this.title = this.team.title;
-            this.beginMin = '2018-01-01';
-            this.beginMax = '2068-01-01';
-            this.endMin = this.beginMin;
-            this.endMax = this.beginMax;
             this.updateApplyList();
         }
     }

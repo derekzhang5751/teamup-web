@@ -47,7 +47,8 @@ export class LoginComponent implements OnInit {
                 if (resp.success) {
                     this.service.username = this.username;
                     this.service.setToken(resp.data.session);
-                    // this.service.setUser(resp.data.user);
+                    this.service.userId = resp.data.user.id;
+                    this.service.username = resp.data.user.first_name;
                     window.open('home', '_self');
                 } else {
                     this.alert(resp.msg);
