@@ -25,95 +25,76 @@
         <div class="home-content">
             <div class="home-ad">Ad Area</div>
             <div class="home-show">
-                <h4 class="text-left">Recommended for you</h4>
-
-                <div class="card" style="width: 220px;">
-                    <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
-                        <p class="card-text">4 - 6</p>
-                        <p class="card-text">July 21 - 24</p>
-                    </div>
+                <div class="card-title">
+                    <h4 class="text-left">Recommended for you</h4>
                 </div>
 
-                <h4 class="text-left">Most Recent Tempup</h4>
-
-                <div class="card" style="width: 220px;">
-                    <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Cottage in Otaw for weekend</p>
-                        <p class="card-text">4 - 6</p>
-                        <p class="card-text">July 21 - 24</p>
-                    </div>
-                </div>
-
-
-                <div class="show-wrapper">
-                    <div class="show-title">Recommended for you</div>
-                    <div>
-                        <div class="recom-wrapper">
-                            <div><img class="team-pic" src="/assets/imgs/team-pic.png"></div>
-                            <div class="team-title">Cottage in Otaw for weekend</div>
-                            <div class="team-size">
-                                <img class="size-pic" src="/assets/imgs/team-size.png">
-                                <span class="size-text">4 - 6</span>
-                            </div>
-                            <div class="team-date">
-                                <img class="size-pic" src="/assets/imgs/team-date.png">
-                                <span class="size-text">July 21 - 24</span>
-                            </div>
-                        </div>
-                        <div class="recom-wrapper" *ngFor="let team of teamsRecommended" (click)="onTeamClick(team)">
-                            <div><img class="team-pic" src="{{team.pic}}"></div>
-                            <div class="team-title">{{team.title}}</div>
-                            <div class="team-size">
-                                <img class="size-pic" src="/assets/imgs/team-size.png">
-                                <span class="size-text">{{team.people}}</span>
-                            </div>
-                            <div class="team-date">
-                                <img class="size-pic" src="/assets/imgs/team-date.png">
-                                <span class="size-text">{{team.time}}</span>
-                            </div>
+                <div class="card-frame">
+                    <div class="card home-card">
+                        <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
+                            <p class="card-text">4 - 6</p>
+                            <p class="card-text">July 21 - 24</p>
                         </div>
                     </div>
-                </div>
-                <div class="show-wrapper">
-                    <div class="show-title">Most Recent Tempup</div>
-                    <div>
-                        <div class="recent-wrapper">
-                            <div class="pic-wrapper">
-                                <img class="team-pic" src="/assets/imgs/team-pic.png">
-                            </div>
-                            <div class="recent-right">
-                                <div class="team-title">Cottage in Otaw for weekend</div>
-                                <div class="team-size">
-                                    <img class="size-pic" src="/assets/imgs/team-size.png">
-                                    <span class="size-text">4 - 6</span>
-                                </div>
-                                <div class="team-date">
-                                    <img class="size-pic" src="/assets/imgs/team-date.png">
-                                    <span class="size-text">July 21 - 24</span>
-                                </div>
-                            </div>
+                    <div class="card home-card">
+                        <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
+                            <p class="card-text">4 - 6</p>
+                            <p class="card-text">July 21 - 24</p>
                         </div>
-                        <div class="recent-wrapper" *ngFor="let team of teamsRecent" (click)="onTeamClick(team)">
-                            <div class="pic-wrapper">
-                                <img class="team-pic" src="{{team.pic}}">
-                            </div>
-                            <div class="recent-right">
-                                <div class="team-title">{{team.title}}</div>
-                                <div class="team-size">
-                                    <img class="size-pic" src="/assets/imgs/team-size.png">
-                                    <span class="size-text">{{team.people}}</span>
-                                </div>
-                                <div class="team-date">
-                                    <img class="size-pic" src="/assets/imgs/team-date.png">
-                                    <span class="size-text">{{team.time}}</span>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="card home-card">
+                        <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
+                            <p class="card-text">4 - 6</p>
+                            <p class="card-text">July 21 - 24</p>
+                        </div>
+                    </div>
+                    <div class="card home-card">
+                        <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
+                            <p class="card-text">4 - 6</p>
+                            <p class="card-text">July 21 - 24</p>
+                        </div>
+                    </div>
+                    <div class="card home-card">
+                        <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
+                            <p class="card-text">4 - 6</p>
+                            <p class="card-text">July 21 - 24</p>
+                        </div>
+                    </div>
+                    <div class="card home-card">
+                        <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
+                            <p class="card-text">4 - 6</p>
+                            <p class="card-text">July 21 - 24</p>
                         </div>
                     </div>
                 </div>
+
+                <div class="card-title">
+                    <h4 class="text-left">Most Recent Tempup</h4>
+                </div>
+
+                <div class="card-frame">
+                    <div class="card home-card">
+                        <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Cottage in Otaw for weekend</p>
+                            <p class="card-text">4 - 6</p>
+                            <p class="card-text">July 21 - 24</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 

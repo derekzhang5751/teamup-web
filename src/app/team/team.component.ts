@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamupService } from '../../app/teamup.service';
 import { MyDatetime } from '../../app/mydatetime';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare var $: any;
 
@@ -26,7 +26,7 @@ export class TeamComponent implements OnInit {
     public minDate: string;
     public maxDate: string;
 
-    constructor(private route: ActivatedRoute, private service: TeamupService,) {
+    constructor(private route: ActivatedRoute, public router: Router, private service: TeamupService) {
     }
 
     ngOnInit() {
@@ -92,7 +92,9 @@ export class TeamComponent implements OnInit {
             (resp: any) => {
                 console.log(resp);
                 if (resp.success) {
-                    this.team.id = resp.data.userId;
+                    // this.team.id = resp.data.userId;
+                    const url = '/myteam/edit/' + resp.data.teamId as string;
+                    this.router.navigate([url]);
                 } else {
                     this.alert(resp.msg);
                 }
