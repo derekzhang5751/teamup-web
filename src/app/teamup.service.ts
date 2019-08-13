@@ -140,8 +140,8 @@ export class TeamupService {
         return this.postFormRequest(url, data);
     }
 
-    public apiCreateTeamOfUser(team: any): Observable<object> {
-        const url = this.getApiUrl('/Team/Team/do.php?action=create_team');
+    public apiSaveTeamOfUser(team: any): Observable<object> {
+        const url = this.getApiUrl('/Team/Team/do.php?action=save_team');
         return this.postJsonRequest(url, team);
     }
 
@@ -164,6 +164,12 @@ export class TeamupService {
     public apiAcceptApply(apply: any): Observable<object> {
         const url = this.getApiUrl('/Team/Team/do.php?action=accept_apply');
         return this.postJsonRequest(url, apply);
+    }
+
+    public apiGetTeamDetail(teamId: number): Observable<object> {
+        const url = this.getApiUrl('/Team/Team/do.php?action=get_team_detail');
+        const data = 'teamid=' + teamId as string;
+        return this.postFormRequest(url, data);
     }
 
     /**

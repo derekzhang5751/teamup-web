@@ -34,48 +34,16 @@
                         <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
-                            <p class="card-text">4 - 6</p>
+                            <p class="card-text">Author</p>
                             <p class="card-text">July 21 - 24</p>
                         </div>
                     </div>
-                    <div class="card home-card">
-                        <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
+                    <div class="card home-card" *ngFor="let item of teamsRecommended; let i=index;">
+                        <img src="item.photo" class="card-img-top" (click)="onTeamClick(item.id)">
                         <div class="card-body">
-                            <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
-                            <p class="card-text">4 - 6</p>
-                            <p class="card-text">July 21 - 24</p>
-                        </div>
-                    </div>
-                    <div class="card home-card">
-                        <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
-                            <p class="card-text">4 - 6</p>
-                            <p class="card-text">July 21 - 24</p>
-                        </div>
-                    </div>
-                    <div class="card home-card">
-                        <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
-                            <p class="card-text">4 - 6</p>
-                            <p class="card-text">July 21 - 24</p>
-                        </div>
-                    </div>
-                    <div class="card home-card">
-                        <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
-                            <p class="card-text">4 - 6</p>
-                            <p class="card-text">July 21 - 24</p>
-                        </div>
-                    </div>
-                    <div class="card home-card">
-                        <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text"> <a href="/team/view/1">Cottage in Otaw for weekend</a> </p>
-                            <p class="card-text">4 - 6</p>
-                            <p class="card-text">July 21 - 24</p>
+                            <p class="card-text"> <a href="/team/view/{{item.id}}">{{item.title}}</a> </p>
+                            <p class="card-text">{{item.author}}</p>
+                            <p class="card-text">{{item.time_begin}} - {{item.time_end}}</p>
                         </div>
                     </div>
                 </div>
@@ -89,8 +57,16 @@
                         <img src="/assets/imgs/show10.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="card-text">Cottage in Otaw for weekend</p>
-                            <p class="card-text">4 - 6</p>
+                            <p class="card-text">Author</p>
                             <p class="card-text">July 21 - 24</p>
+                        </div>
+                    </div>
+                    <div class="card home-card" *ngFor="let item of teamsRecent; let i=index;">
+                        <img src="item.photo" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text"> <a href="/team/view/{{item.id}}">{{item.title}}</a> </p>
+                            <p class="card-text">{{item.author}}</p>
+                            <p class="card-text">{{item.time_begin}} - {{item.time_end}}</p>
                         </div>
                     </div>
                 </div>

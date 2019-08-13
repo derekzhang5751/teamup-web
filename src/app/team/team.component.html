@@ -62,26 +62,26 @@
             <textarea class="form-control" aria-label="With textarea" rows="5" [(ngModel)]="team.desc"></textarea>
         </div>
         <div class="mx-auto" style="width: 100%; text-align: center;">
-            <button type="button" class="btn btn-primary" (click)="onCancelClick()">Cancel</button>&nbsp;
+            <!--button type="button" class="btn btn-primary" (click)="onCancelClick()">Cancel</button>&nbsp;-->
             <button type="button" class="btn btn-primary" (click)="onSaveTeamClick()">Save Team</button>&nbsp;
-            <button type="button" class="btn btn-primary" (click)="onUploadPhotoClick()">Upload Photo</button>
+            <button type="button" class="btn btn-primary" *ngIf="team.id > 0" (click)="onUploadPhotoClick()">Upload Photo</button>
         </div>
         <!-- Picture List -->
-        <div class="pic-container">
-            <div class="team-pic-frame">
-                <img class="team-pic" src="pic_trulli.jpg" alt="Trulli">
+        <div class="pic-container" *ngIf="photoList.length > 0">
+            <div class="team-pic-frame" *ngFor="let photo of photoList; let i=index;">
+                <img class="team-pic" src="photo" alt="Photo">
                 <button type="button" class="btn btn-primary">Delete</button>
             </div>
             <div class="team-pic-frame">
-                <img class="team-pic" src="pic_trulli.jpg" alt="Trulli">
+                <img class="team-pic" src="pic_trulli.jpg" alt="Photo">
                 <button type="button" class="btn btn-primary">Delete</button>
             </div>
             <div class="team-pic-frame">
-                <img class="team-pic" src="pic_trulli.jpg" alt="Trulli">
+                <img class="team-pic" src="pic_trulli.jpg" alt="Photo">
                 <button type="button" class="btn btn-primary">Delete</button>
             </div>
             <div class="team-pic-frame">
-                <img class="team-pic" src="pic_trulli.jpg" alt="Trulli">
+                <img class="team-pic" src="pic_trulli.jpg" alt="Photo">
                 <button type="button" class="btn btn-primary">Delete</button>
             </div>
         </div>

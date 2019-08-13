@@ -8,6 +8,7 @@ import { MyProfileComponent } from '../my-profile/my-profile.component';
 
 import { MyDatetime } from '../../app/mydatetime';
 import { from } from 'rxjs';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -28,9 +29,9 @@ export class HomeComponent implements OnInit {
         status: 0
     };
     public teamsRecommended: Array<Team>;
-    public teamsRecent: Array<Team>;
+    public teamsRecent: Array<TeamBrief>;
 
-    constructor(private service: TeamupService) {
+    constructor(private service: TeamupService, public router: Router) {
         this.lang = this.service.language;
 
         const today = new MyDatetime();
@@ -42,7 +43,6 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('home on init');
         $('.home_datetime').datetimepicker({
             format: 'yyyy-mm-dd',
             autoclose: true,
@@ -50,42 +50,35 @@ export class HomeComponent implements OnInit {
             todayHighlight: true,
             minView: 2
         });
+
+        this.doSearch();
     }
 
-    switchLanguage(lang) {
+    switchLanguage(lang: string) {
         this.lang = lang;
         this.service.language = this.lang;
     }
 
-    onLoginClick() {
-        window.open('login', '_self');
-    }
-
-    onLSignupClick() {
-        window.open('signup', '_self');
-    }
-
-    onMyProfileClick() {
-        window.open('profile', '_self');
-    }
-
-    openTeamView(team: Team) {
-        window.open('team/view/' + team.id, '_self');
+    openTeamView(teamId: number) {
+        const url = '/team/view/' + teamId as string;
+        this.router.navigate([url]);
     }
 
     openNewTeam() {
-        window.open('myteam/create/0', '_self');
+        const url = '/myteam/create/0';
+        this.router.navigate([url]);
     }
 
-    reviewTeam(team: Team) {
-        window.open('team/review/' + team.id, '_self');
+    reviewTeam(teamId: number) {
+        const url = '/team/review/' + teamId as string;
+        this.router.navigate([url]);
     }
 
-    onTeamClick(team: Team) {
+    onTeamClick(team: TeamBrief) {
         if (team.author === this.service.userId) {
-            this.reviewTeam(team);
+            this.reviewTeam(team.id);
         } else {
-            this.openTeamView(team);
+            this.openTeamView(team.id);
         }
     }
 
@@ -95,8 +88,8 @@ export class HomeComponent implements OnInit {
             (resp: any) => {
                 console.log(resp);
                 if (resp.success) {
-                    this.teamsRecommended = resp.data;
-                    this.teamsRecent = resp.data;
+                    this.teamsRecommended = resp.data.recommended;
+                    this.teamsRecent = resp.data.recent;
                 } else {
                     this.alert(resp.msg);
                 }

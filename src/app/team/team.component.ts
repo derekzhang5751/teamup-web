@@ -11,8 +11,13 @@ declare var $: any;
     styleUrls: ['./team.component.scss']
 })
 export class TeamComponent implements OnInit {
-    public mode: string;
+    private mode: string;
+    private minDate: string;
+    private maxDate: string;
+
+    public title: string;
     public team: Team;
+    public photoList: Array<string>;
     public applyList: Array<{
         id: number,
         user_id: number,
@@ -22,9 +27,6 @@ export class TeamComponent implements OnInit {
         first_name: string,
         user_photo: string
     }>;
-    public title: string;
-    public minDate: string;
-    public maxDate: string;
 
     constructor(private route: ActivatedRoute, public router: Router, private service: TeamupService) {
     }
@@ -37,26 +39,27 @@ export class TeamComponent implements OnInit {
             todayHighlight: true,
             minView: 2
         });
+        this.photoList = [];
+        this.team = {
+            id: 0,
+            author: this.service.userId,
+            category: 0,
+            time_begin: '2018-12-01T09:00:00Z',
+            time_end: '2018-12-05T17:00:00Z',
+            need_review: true,
+            dp_self: 5,
+            dp_other: 7,
+            create_time: '',
+            status: 0,
+            people: '5 - 10',
+            title: '',
+            location: '',
+            desc: ''
+        };
 
         this.applyList = [];
         this.mode = this.route.snapshot.paramMap.get('mode');
         if (this.mode === 'create') {
-            this.team = {
-                id: 0,
-                author: this.service.userId,
-                category: 0,
-                time_begin: '2018-12-01T09:00:00Z',
-                time_end: '2018-12-05T17:00:00Z',
-                need_review: true,
-                dp_self: 5,
-                dp_other: 7,
-                create_time: '',
-                status: 0,
-                people: '5 - 10',
-                title: '',
-                location: '',
-                desc: ''
-            };
             this.title = 'Build Your Team';
             const today = new MyDatetime();
             this.minDate = today.format('yyyy-MM-dd');
@@ -65,10 +68,9 @@ export class TeamComponent implements OnInit {
             this.team.time_begin = this.minDate;
             this.team.time_end = this.maxDate;
         } else {
-            const id = this.route.snapshot.paramMap.get('id');
-            // this.team = params.get('team');
-            this.title = this.team.title;
-            this.updateApplyList();
+            const id = +this.route.snapshot.paramMap.get('id');
+            this.title = 'Edit Your Team';
+            this.requestTeamDetail(id);
         }
     }
 
@@ -88,7 +90,7 @@ export class TeamComponent implements OnInit {
     }
 
     onSaveTeamClick() {
-        this.service.apiCreateTeamOfUser(this.team).subscribe(
+        this.service.apiSaveTeamOfUser(this.team).subscribe(
             (resp: any) => {
                 console.log(resp);
                 if (resp.success) {
@@ -114,6 +116,17 @@ export class TeamComponent implements OnInit {
                     apply.status = 2;
                 } else {
                     this.alert(resp.msg);
+                }
+            }
+        );
+    }
+
+    private requestTeamDetail(teamId: number) {
+        this.service.apiGetTeamDetail(teamId).subscribe(
+            (resp: any) => {
+                console.log(resp);
+                if (resp.success) {
+                    this.team = resp.data.team;
                 }
             }
         );
