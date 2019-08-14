@@ -172,6 +172,18 @@ export class TeamupService {
         return this.postFormRequest(url, data);
     }
 
+    public apiGetUserFollows(userId: number): Observable<object> {
+        const url = this.getApiUrl('/Team/Team/do.php?action=get_user_follows');
+        const data = 'userid=' + userId as string;
+        return this.postFormRequest(url, data);
+    }
+
+    public apiGetUserMyTeams(userId: number): Observable<object> {
+        const url = this.getApiUrl('/Team/Team/do.php?action=get_user_myteams');
+        const data = 'userid=' + userId as string;
+        return this.postFormRequest(url, data);
+    }
+
     /**
      * Handle Http operation that failed.
      * Let the app continue.

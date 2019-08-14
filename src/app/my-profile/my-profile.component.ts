@@ -13,6 +13,8 @@ export class MyProfileComponent implements OnInit {
     public oldPass = '';
     public newPass1 = '';
     public newPass2 = '';
+    public followTeams: Array<TeamBrief>;
+    public myTeams: Array<TeamBrief>;
 
     constructor(private service: TeamupService) { }
 
@@ -32,8 +34,12 @@ export class MyProfileComponent implements OnInit {
             photo_url: '',
             source: 'moreppl'
         };
+        this.followTeams = [];
+        this.myTeams = [];
         this.dataChanged = false;
         this.updateUserProfile();
+        this.updateMyFollows();
+        this.updateMyTeams();
     }
 
     onInputChanged() {
@@ -96,6 +102,34 @@ export class MyProfileComponent implements OnInit {
                 if (resp.success) {
                     this.user = resp.data.user;
                     this.alert('Your profile has been updated.');
+                } else {
+                    this.alert(resp.msg);
+                }
+            }
+        );
+    }
+
+    private updateMyFollows() {
+        this.service.apiGetUserFollows(this.user.id).subscribe(
+            (resp: any) => {
+                console.log(resp);
+                if (resp.success) {
+                    this.followTeams = resp.data.follows;
+                    this.alert('Your follows has been updated.');
+                } else {
+                    this.alert(resp.msg);
+                }
+            }
+        );
+    }
+
+    private updateMyTeams() {
+        this.service.apiGetUserMyTeams(this.user.id).subscribe(
+            (resp: any) => {
+                console.log(resp);
+                if (resp.success) {
+                    this.myTeams = resp.data.myteams;
+                    this.alert('Your teams has been updated.');
                 } else {
                     this.alert(resp.msg);
                 }
