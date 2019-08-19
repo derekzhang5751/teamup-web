@@ -40,3 +40,11 @@ interface TeamBrief {
     title: string;
     photo: string;
 }
+
+interface Photo {
+    id: number;
+    team_id: number;
+    store_type: number;
+    status: number;
+    pic_url: string;
+}

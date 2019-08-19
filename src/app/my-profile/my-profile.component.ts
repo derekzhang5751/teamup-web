@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamupService } from '../../app/teamup.service';
 import { UploadComponent } from '../upload/upload.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-my-profile',
@@ -15,10 +16,12 @@ export class MyProfileComponent implements OnInit {
     public newPass2 = '';
     public followTeams: Array<TeamBrief>;
     public myTeams: Array<TeamBrief>;
+    public headPhotoUrl: any;
 
-    constructor(private service: TeamupService) { }
+    constructor(private service: TeamupService, private sanitizer: DomSanitizer) { }
 
     ngOnInit() {
+        this.headPhotoUrl = this.service.getDomain() + '/upload/default/head.svg';
         this.user = {
             id: 0,
             username: 'Derek.Z',
@@ -48,13 +51,13 @@ export class MyProfileComponent implements OnInit {
     }
 
     onSaveClick() {
+        console.log('Update user profile', this.user);
         this.service.apiSaveUserProfile(this.user).subscribe(
             (resp: any) => {
                 console.log(resp);
                 if (resp.success) {
-                    // this.service.setUser(this.user);
+                    this.user = resp.data.user;
                     this.dataChanged = false;
-                    // this.navCtrl.pop();
                 } else {
                     this.alert(resp.msg);
                 }
@@ -62,24 +65,22 @@ export class MyProfileComponent implements OnInit {
         );
     }
 
-    onUploadHeadPhotoClick() {
-        /*let opt = {
-            showBackdrop: true,
-            enableBackdropDismiss: false,
-            cssClass: 'upload-modal'
-        };
-        let url = this.service.getApiUrl('/User/User/do.php?action=upload_photo&userid=' + this.user.id);
-        let uploadModal = this.modalCtrl.create(UploadPage,
-            {
-                user_id: this.user.id,
-                api_url: url
-            },
-            opt);
-        uploadModal.onDidDismiss(data => {
-            console.log('Upload return ', data);
-            this.updateUserProfile();
-        });
-        uploadModal.present();*/
+    onSetHeadPhotoClick($event) {
+        if ($event.target.value === '') {
+            return;
+        }
+        console.log('Set head photo', $event);
+        let url: string;
+        if (navigator.userAgent.indexOf('MSIE') >= 1) { // IE
+            url = $event.target.value;
+        } else if (navigator.userAgent.indexOf('Firefox') > 0) { // Firefox
+            url = window.URL.createObjectURL($event.files.item(0));
+        } else if (navigator.userAgent.indexOf('Chrome') > 0) { // Chrome
+            url = window.URL.createObjectURL($event.target.files[0]);
+        }
+
+        this.headPhotoUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+        this.doUpload();
     }
 
     onChangePassword() {
@@ -96,11 +97,12 @@ export class MyProfileComponent implements OnInit {
     }
 
     private updateUserProfile() {
-        this.service.apiGetUserProfile(this.user.id).subscribe(
+        this.service.apiGetUserProfile(this.service.userId).subscribe(
             (resp: any) => {
                 console.log(resp);
                 if (resp.success) {
                     this.user = resp.data.user;
+                    this.headPhotoUrl = this.service.getDomain() + this.user.photo_url;
                     this.alert('Your profile has been updated.');
                 } else {
                     this.alert(resp.msg);
@@ -110,7 +112,7 @@ export class MyProfileComponent implements OnInit {
     }
 
     private updateMyFollows() {
-        this.service.apiGetUserFollows(this.user.id).subscribe(
+        this.service.apiGetUserFollows(this.service.userId).subscribe(
             (resp: any) => {
                 console.log(resp);
                 if (resp.success) {
@@ -124,7 +126,7 @@ export class MyProfileComponent implements OnInit {
     }
 
     private updateMyTeams() {
-        this.service.apiGetUserMyTeams(this.user.id).subscribe(
+        this.service.apiGetUserMyTeams(this.service.userId).subscribe(
             (resp: any) => {
                 console.log(resp);
                 if (resp.success) {
@@ -135,6 +137,37 @@ export class MyProfileComponent implements OnInit {
                 }
             }
         );
+    }
+
+    private doUpload() {
+        const apiUrl = this.service.getApiUrl('/User/User/do.php?action=upload_photo');
+
+        const formData = new FormData();
+        formData.append('file', (document.getElementById('inputGroupHeadPhoto') as HTMLInputElement).files[0]);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', apiUrl);
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                // console.log(xhr.response);
+                const result = JSON.parse(xhr.response);
+                if (result.success) {
+                    console.log('Uploading... Success');
+                } else {
+                    console.log('Uploading... Failed', result.msg);
+                }
+            } else {
+                // console.log('Upload Error');
+                console.log('Uploading... Error');
+            }
+        };
+        xhr.upload.onprogress = (event) => {
+            if (event.lengthComputable) {
+                const percent = Math.floor(event.loaded / event.total * 100) ;
+                console.log('Uploading... ' + percent as string + '%');
+            }
+        };
+        xhr.send(formData);
     }
 
     private alert(msg: string) {

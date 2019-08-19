@@ -8,48 +8,83 @@ import { ActivatedRoute } from '@angular/router';
     styleUrls: ['./team-view.component.scss']
 })
 export class TeamViewComponent implements OnInit {
-    public mode: string;
-    public team: {
-        id: number;
-        author: number,
-        category: number,
-        time_begin: string,
-        time_end: string,
-        need_review: boolean,
-        dp_self: number,
-        dp_other: number,
-        create_time: string,
-        status: number,
-        people: string,
-        title: string,
-        location: string,
-        desc: string
-    };
+    private mode: string;
+    private teamId: number;
+
+    public userId: number;
+    public team: Team;
+    public photoList: Array<Photo>;
+    // for Request
+    public requestRemark: string;
 
     constructor(private route: ActivatedRoute, private service: TeamupService) {
     }
 
     ngOnInit() {
+        this.userId = this.service.userId;
+        this.photoList = [];
+        this.team = {
+            id: 0,
+            author: this.service.userId,
+            category: 0,
+            time_begin: '',
+            time_end: '',
+            need_review: true,
+            dp_self: 5,
+            dp_other: 7,
+            create_time: '',
+            status: 0,
+            people: '',
+            title: '',
+            location: '',
+            desc: ''
+        };
+        this.requestRemark = '';
+
         this.mode = this.route.snapshot.paramMap.get('mode');
-        // this.team.id = this.route.snapshot.paramMap.get('id') as number;
-        console.log(this.team);
+        this.teamId = +this.route.snapshot.paramMap.get('id');
+        this.requestTeamDetail(this.teamId);
     }
 
-    onCloseClick() {
-        // this.navCtrl.pop();
-    }
-
-    onApplyClick() {
-        let userId = this.service.userId;
-        if (userId <= 0) {
+    onRequestJoinClick() {
+        if (this.userId <= 0) {
             this.alert('Please login first.');
             return;
         }
-        this.doApplyTeam(userId);
+        let remark = 'Request join';
+        if (this.requestRemark.length > 0) {
+            remark = this.requestRemark;
+        }
+        this.requestJoinTeam(this.userId, remark);
+    }
+
+    private requestTeamDetail(teamId: number) {
+        this.service.apiGetTeamDetail(teamId).subscribe(
+            (resp: any) => {
+                console.log(resp);
+                if (resp.success) {
+                    this.team = resp.data.team;
+                    if (this.team.id > 0) {
+                        this.requestTeamPhotos(this.team.id);
+                    }
+                }
+            }
+        );
+    }
+
+    private requestTeamPhotos(teamId: number) {
+        this.service.apiGetTeamPhotos(teamId).subscribe(
+            (resp: any) => {
+                console.log(resp);
+                if (resp.success) {
+                    this.photoList = resp.data.photos;
+                }
+            }
+        );
     }
 
     onSubscriptClick() {
-        let userId = this.service.userId;
+        const userId = this.service.userId;
         if (userId <= 0) {
             this.alert('Please login first.');
             return;
@@ -57,24 +92,20 @@ export class TeamViewComponent implements OnInit {
         this.doSubscriptTeam(userId);
     }
 
-    onMessageClick() {
-        //
-    }
-
-    private doApplyTeam(userId) {
-        let apply = {
+    private requestJoinTeam(userId: number, remark: string) {
+        const apply = {
             user_id: userId,
-            team_id: this.team,
+            team_id: this.team.id,
             status: 1,
-            remark: 'apply'
+            remark
         };
         this.service.apiApplyTeam(apply).subscribe(
-            resp => {
+            (resp: any) => {
                 console.log(resp);
-                if (resp['success']) {
-                    //this.navCtrl.pop();
+                if (resp.success) {
+                    // this.navCtrl.pop();
                 } else {
-                    this.alert(resp['msg']);
+                    this.alert(resp.msg);
                 }
             }
         );
@@ -88,18 +119,19 @@ export class TeamViewComponent implements OnInit {
             remark: 'subscript'
         };
         this.service.apiApplyTeam(apply).subscribe(
-            resp => {
+            (resp: any) => {
                 console.log(resp);
-                if (resp['success']) {
-                    //this.navCtrl.pop();
+                if (resp.success) {
+                    // this.navCtrl.pop();
                 } else {
-                    this.alert(resp['msg']);
+                    this.alert(resp.msg);
                 }
             }
         );
     }
 
     private alert(msg: string) {
-        //
+        console.log('Alart: ' + msg);
+        window.alert(msg);
     }
 }

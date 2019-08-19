@@ -7,7 +7,7 @@
 }
 .profile-right {
     border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    //border-right: 1px solid gray;
 }
 .input-title {
     width: 110px;
@@ -30,4 +30,8 @@
         margin-bottom: 10px;
         margin-right: 20px;
     }
+}
+.head-photo {
+    width: 150px;
+    height: 200px;
 }

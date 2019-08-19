@@ -65,23 +65,18 @@
             <!--button type="button" class="btn btn-primary" (click)="onCancelClick()">Cancel</button>&nbsp;-->
             <button type="button" class="btn btn-primary" (click)="onSaveTeamClick()">Save Team</button>&nbsp;
             <button type="button" class="btn btn-primary" *ngIf="team.id > 0" (click)="onUploadPhotoClick()">Upload Photo</button>
+            <div class="input-group mb-3" *ngIf="team.id > 0">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupUploadPhoto" name="inputGroupUploadPhoto" accept="image/*"
+                        aria-describedby="inputGroupFileAddon01" (change)="onUploadPhotoClick($event)">
+                    <label class="custom-file-label" for="inputGroupUploadPhoto">Upload Photo</label>
+                </div>
+            </div>
         </div>
         <!-- Picture List -->
         <div class="pic-container" *ngIf="photoList.length > 0">
             <div class="team-pic-frame" *ngFor="let photo of photoList; let i=index;">
-                <img class="team-pic" src="photo" alt="Photo">
-                <button type="button" class="btn btn-primary">Delete</button>
-            </div>
-            <div class="team-pic-frame">
-                <img class="team-pic" src="pic_trulli.jpg" alt="Photo">
-                <button type="button" class="btn btn-primary">Delete</button>
-            </div>
-            <div class="team-pic-frame">
-                <img class="team-pic" src="pic_trulli.jpg" alt="Photo">
-                <button type="button" class="btn btn-primary">Delete</button>
-            </div>
-            <div class="team-pic-frame">
-                <img class="team-pic" src="pic_trulli.jpg" alt="Photo">
+                <img class="team-pic" [src]="photo.pic_url" alt="Photo">
                 <button type="button" class="btn btn-primary">Delete</button>
             </div>
         </div>

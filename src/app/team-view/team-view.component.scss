@@ -8,6 +8,8 @@
     display: inline-block;
     width: 400px;
     height: 300px;
+    padding: 10px;
+    margin-left: 20px;
 }
 .team-pic {
     width: 400px;
@@ -34,4 +36,12 @@
     max-width: 900px;
     margin: 0 auto;
     margin-top: 20px;
+    .request-frame {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 50px;
+        padding-bottom: 70px;
+        border: 1px solid gray;
+        border-radius: 5px;
+    }
 }

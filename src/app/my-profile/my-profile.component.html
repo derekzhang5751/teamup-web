@@ -29,8 +29,14 @@
                         aria-labelledby="pills-profile-tab">
                         <div class="row">
                             <div class="col-3">
-                                <img src="smiley.gif" alt="Smiley face" height="300" width="200">
-                                <button type="button" class="btn btn-outline-primary">Set Photo</button>
+                                <img class="head-photo" [src]="headPhotoUrl" alt="Smiley face">
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupHeadPhoto" name="inputGroupHeadPhoto" accept="image/*"
+                                            aria-describedby="inputGroupFileAddon01" (change)="onSetHeadPhotoClick($event)">
+                                        <label class="custom-file-label" for="inputGroupHeadPhoto">Photo</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-7">
                                 <div class="input-group mb-3">
@@ -40,13 +46,13 @@
                                     <input type="text" class="form-control" aria-describedby="basic-addon3"
                                         [(ngModel)]="user.email">
                                 </div>
-                                <div class="input-group mb-3">
+                                <!--div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text input-title">Nickname</span>
                                     </div>
                                     <input type="text" class="form-control" aria-describedby="basic-addon3"
                                         [(ngModel)]="user.username">
-                                </div>
+                                </div-->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text input-title">First Name</span>
@@ -61,13 +67,13 @@
                                     <input type="text" class="form-control" aria-describedby="basic-addon3"
                                         [(ngModel)]="user.last_name">
                                 </div>
-                                <div class="input-group mb-3">
+                                <!--div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text input-title">Level</span>
                                     </div>
                                     <input type="text" class="form-control" aria-describedby="basic-addon3"
                                         [(ngModel)]="user.level">
-                                </div>
+                                </div-->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text input-title">Mobile</span>
@@ -136,7 +142,8 @@
                             <div class="card follows-card" *ngFor="let item of followTeams; let i=index;">
                                 <img src="item.photo" class="card-img-top" (click)="onTeamClick(item.id)">
                                 <div class="card-body">
-                                    <p class="card-text"> <a href="/team/view/{{item.id}}" target="_blank">{{item.title}}</a> </p>
+                                    <p class="card-text"> <a href="/team/view/{{item.id}}"
+                                            target="_blank">{{item.title}}</a> </p>
                                     <p class="card-text">{{item.author}}</p>
                                     <p class="card-text">{{item.time_begin}} - {{item.time_end}}</p>
                                 </div>

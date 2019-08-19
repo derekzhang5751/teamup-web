@@ -17,16 +17,7 @@ export class TeamComponent implements OnInit {
 
     public title: string;
     public team: Team;
-    public photoList: Array<string>;
-    public applyList: Array<{
-        id: number,
-        user_id: number,
-        team_id: number,
-        status: number,
-        remark: string,
-        first_name: string,
-        user_photo: string
-    }>;
+    public photoList: Array<Photo>;
 
     constructor(private route: ActivatedRoute, public router: Router, private service: TeamupService) {
     }
@@ -57,7 +48,6 @@ export class TeamComponent implements OnInit {
             desc: ''
         };
 
-        this.applyList = [];
         this.mode = this.route.snapshot.paramMap.get('mode');
         if (this.mode === 'create') {
             this.title = 'Build Your Team';
@@ -85,10 +75,6 @@ export class TeamComponent implements OnInit {
         console.log(this.team.time_end);
     }
 
-    onCancelClick() {
-        // this.navCtrl.pop();
-    }
-
     onSaveTeamClick() {
         this.service.apiSaveTeamOfUser(this.team).subscribe(
             (resp: any) => {
@@ -104,21 +90,23 @@ export class TeamComponent implements OnInit {
         );
     }
 
-    onUploadPhotoClick() {
-        //
-    }
+    onUploadPhotoClick($event) {
+        if ($event.target.value === '') {
+            return;
+        }
+        console.log('Set head photo', $event.target.value);
 
-    onAcceptClick(apply) {
-        this.service.apiAcceptApply(apply).subscribe(
-            (resp: any) => {
-                console.log(resp);
-                if (resp.success) {
-                    apply.status = 2;
-                } else {
-                    this.alert(resp.msg);
-                }
-            }
-        );
+        /*let url: string;
+        if (navigator.userAgent.indexOf('MSIE') >= 1) { // IE
+            url = $event.target.value;
+        } else if (navigator.userAgent.indexOf('Firefox') > 0) { // Firefox
+            url = window.URL.createObjectURL($event.files.item(0));
+        } else if (navigator.userAgent.indexOf('Chrome') > 0) { // Chrome
+            url = window.URL.createObjectURL($event.target.files[0]);
+        }
+        this.headPhotoUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+        */
+        this.doUpload();
     }
 
     private requestTeamDetail(teamId: number) {
@@ -127,23 +115,60 @@ export class TeamComponent implements OnInit {
                 console.log(resp);
                 if (resp.success) {
                     this.team = resp.data.team;
+                    if (this.team.id > 0) {
+                        this.requestTeamPhotos(this.team.id);
+                    }
                 }
             }
         );
     }
 
-    private updateApplyList() {
-        this.service.apiGetApplyList(this.team.id).subscribe(
+    private requestTeamPhotos(teamId: number) {
+        this.service.apiGetTeamPhotos(teamId).subscribe(
             (resp: any) => {
                 console.log(resp);
                 if (resp.success) {
-                    this.applyList = resp.data.users;
+                    this.photoList = resp.data.photos;
                 }
             }
         );
     }
 
+    private doUpload() {
+        const apiUrl = this.service.getApiUrl('/Team/Team/do.php?action=upload_image&teamid=' + this.team.id as string);
+        console.log('Upload URL:' + apiUrl);
+
+        const formData = new FormData();
+        formData.append('file', (document.getElementById('inputGroupUploadPhoto') as HTMLInputElement).files[0]);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', apiUrl);
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                // console.log(xhr.response);
+                const result = JSON.parse(xhr.response);
+                if (result.success) {
+                    console.log('Uploading... Success');
+                    this.requestTeamPhotos(this.team.id);
+                } else {
+                    console.log('Uploading... Failed', result.msg);
+                }
+            } else {
+                // console.log('Upload Error');
+                console.log('Uploading... Error');
+            }
+        };
+        xhr.upload.onprogress = (event) => {
+            if (event.lengthComputable) {
+                const percent = Math.floor(event.loaded / event.total * 100) ;
+                console.log('Uploading... ' + percent as string + '%');
+            }
+        };
+        xhr.send(formData);
+    }
+
     private alert(msg: string) {
-        //
+        console.log('Alart: ' + msg);
+        window.alert(msg);
     }
 }

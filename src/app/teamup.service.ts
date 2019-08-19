@@ -71,6 +71,10 @@ export class TeamupService {
         this.saveData('token', this._token);
     }
 
+    public getDomain() {
+        return this.domainUrl;
+    }
+
     public getApiUrl(url: string): string {
         return this.domainUrl + url + '&session=' + this._token + '&DeviceType=1';
     }
@@ -181,6 +185,12 @@ export class TeamupService {
     public apiGetUserMyTeams(userId: number): Observable<object> {
         const url = this.getApiUrl('/Team/Team/do.php?action=get_user_myteams');
         const data = 'userid=' + userId as string;
+        return this.postFormRequest(url, data);
+    }
+
+    public apiGetTeamPhotos(teamId: number): Observable<object> {
+        const url = this.getApiUrl('/Team/Team/do.php?action=get_team_photos');
+        const data = 'teamid=' + teamId as string;
         return this.postFormRequest(url, data);
     }
 

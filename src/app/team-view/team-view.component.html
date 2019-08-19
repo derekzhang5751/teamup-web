@@ -3,17 +3,8 @@
     <div class="teamview-head-pic">
         <!-- Picture List -->
         <div class="pic-container">
-            <div class="team-pic-frame">
-                <img class="team-pic" src="pic_trulli.jpg" alt="Trulli">
-            </div>
-            <div class="team-pic-frame">
-                <img class="team-pic" src="pic_trulli.jpg" alt="Trulli">
-            </div>
-            <div class="team-pic-frame">
-                <img class="team-pic" src="pic_trulli.jpg" alt="Trulli">
-            </div>
-            <div class="team-pic-frame">
-                <img class="team-pic" src="pic_trulli.jpg" alt="Trulli">
+            <div class="team-pic-frame" *ngFor="let photo of photoList; let i=index;">
+                <img class="team-pic" [src]="photo.pic_url" alt="Image">
             </div>
         </div>
     </div>
@@ -21,23 +12,27 @@
     <div class="teamview-frame">
         <div class="row">
             <div class="col-8">
-                <h2>Cottage in Otaw for weekend</h2>
-                <p>Entertainment / Bussiness</p>
-                <p>Aug 23 ~ 26</p>
-                <p>Bulaffer Lake, Toronto</p>
-                <p>6 - 10 People</p>
-                <p>Drop Period(Self): 6</p>
-                <p>Drop Period(Other): 2</p>
+                <h2>{{team.title}}</h2>
+                <p>Type: {{team.category}}</p>
+                <p>{{team.time_begin}} ~ {{team.time_end}}</p>
+                <p>{{team.location}}</p>
+                <p>{{team.people}} People</p>
+                <p>Drop Period(Self): {{team.dp_self}}</p>
+                <p>Drop Period(Other): {{team.dp_other}}</p>
                 <p>Need Review</p>
-                <p>Description</p>
+                <p>{{team.desc}}</p>
             </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-                AD Area
-                <div class="mx-auto" style="width: 100%; text-align: center;">
-                    <button type="button" class="btn btn-primary">Request Join</button>&nbsp;
-                    <button type="button" class="btn btn-primary">Accept</button>&nbsp;
-                    <button type="button" class="btn btn-primary">Reject</button>
+            <div class="col-4">
+                <!-- AD Area -->
+                <div class="request-frame" *ngIf="userId != team.author">
+                    <h5>Want to join this team ?</h5>
+                    <textarea class="form-control" aria-label="With textarea" rows="3" [(ngModel)]="requestRemark"></textarea>
+                    <div class="mx-auto" style="width: 100%; text-align: center; margin-top: 20px;">
+                        <button type="button" class="btn btn-primary" (click)="onRequestJoinClick()">Request Join</button>&nbsp;
+                    </div>
+                </div>
+                <div class="request-frame" *ngIf="userId == team.author">
+                    Request List
                 </div>
             </div>
         </div>
