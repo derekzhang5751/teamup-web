@@ -21,7 +21,7 @@ export class MyProfileComponent implements OnInit {
     constructor(private service: TeamupService, private sanitizer: DomSanitizer) { }
 
     ngOnInit() {
-        this.headPhotoUrl = this.service.getDomain() + '/upload/default/head.svg';
+        this.headPhotoUrl = this.service.getResourceDomain() + '/upload/default/head.svg';
         this.user = {
             id: 0,
             username: 'Derek.Z',
@@ -102,7 +102,7 @@ export class MyProfileComponent implements OnInit {
                 console.log(resp);
                 if (resp.success) {
                     this.user = resp.data.user;
-                    this.headPhotoUrl = this.service.getDomain() + this.user.photo_url;
+                    this.headPhotoUrl = this.service.getResourceDomain() + this.user.photo_url;
                     this.alert('Your profile has been updated.');
                 } else {
                     this.alert(resp.msg);

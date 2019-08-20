@@ -8,11 +8,13 @@ import { catchError } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class TeamupService {
-    // private domainUrl = 'http://www.moreppl.com/main';
-    private domainUrl = 'http://teamup.loc';
+    private domainUrl = 'http://api.moreppl.com';
+    // private domainUrl = 'http://teamup.loc';
+    private resourceDomain = 'http://res.moreppl.com';
 
     private httpOptions = {
         headers: new HttpHeaders({
+            // 'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/x-www-form-urlencoded'
         })
     };
@@ -73,6 +75,10 @@ export class TeamupService {
 
     public getDomain() {
         return this.domainUrl;
+    }
+
+    public getResourceDomain() {
+        return this.resourceDomain;
     }
 
     public getApiUrl(url: string): string {

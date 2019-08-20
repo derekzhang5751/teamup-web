@@ -14,7 +14,7 @@ export class SignupComponent implements OnInit {
     public password = '';
     public password2 = '';
     public loginType = 'moreppl';
-    public alertMsg: string = '';
+    public alertMsg = '';
 
     constructor(private service: TeamupService) { }
 
@@ -37,41 +37,22 @@ export class SignupComponent implements OnInit {
         console.log(this.username);
         console.log(this.password);
         console.log(this.password2);
-        if (this.password == this.password2) {
+        if (this.password === this.password2) {
             this.doSignup('moreppl');
         } else {
-            //this.alert('Password are not same!');
-            $('.alert').alert();
+            this.alert('Password are not same!');
         }
     }
 
     private doSignup(source: string) {
         this.service.apiUserSignup(this.username, this.password, source).subscribe(
-            resp => {
+            (resp: any) => {
                 console.log(resp);
-                if (resp['success']) {
+                if (resp.success) {
                     this.alert('Register success, please check out your email and activate your account.');
-                    //this.alert(this.translate.instant('SIGNIN-OK-MSG'));
-                    //this.navCtrl.popToRoot();
+                    window.open('home', '_self');
                 } else {
-                    this.alert(resp['msg']);
-                }
-            }
-        );
-    }
-
-    private doLogin(source: string, name: string, image: string, token: string) {
-        this.service.apiUserLogin(this.username, this.password, source, name, image, token).subscribe(
-            resp => {
-                console.log(resp);
-                if (resp['success']) {
-                    this.service.username = this.username;
-                    this.service.setToken(resp['data']['session']);
-                    //this.service.setUser(resp['data']['user']);
-                    //this.events.publish('teamup:login');
-                    //this.navCtrl.popToRoot();
-                } else {
-                    this.alert(resp['msg']);
+                    this.alert(resp.msg);
                 }
             }
         );
@@ -102,6 +83,7 @@ export class SignupComponent implements OnInit {
 
     private alert(msg: string) {
         this.alertMsg = msg;
-        $('.alert').alert();
+        // $('.alert').alert();
+        window.alert(msg);
     }
 }
