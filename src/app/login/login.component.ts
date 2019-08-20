@@ -81,18 +81,6 @@ export class LoginComponent implements OnInit {
     }
 
     private alert(msg: string) {
-        /*let alert = this.alertCtrl.create({
-            title: this.translate.instant('DLG-TIP'),
-            message: msg,
-            buttons: [
-                {
-                    text: this.translate.instant('GOT-IT'),
-                    handler: () => {
-                        //console.log('Buy clicked');
-                    }
-                }
-            ]
-        });
-        alert.present();*/
+        window.alert(msg);
     }
 }
