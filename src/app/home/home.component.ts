@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
     }
 
     onTeamClick(team: TeamBrief) {
-        if (team.author === this.service.userId) {
+        if (team.user_id === this.service.userId) {
             this.reviewTeam(team.id);
         } else {
             this.openTeamView(team.id);

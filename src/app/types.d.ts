@@ -33,7 +33,8 @@ interface User {
 
 interface TeamBrief {
     id: number;
-    author: number;
+    author: string;
+    user_id: number;
     time_begin: string;
     time_end: string;
     status: number;

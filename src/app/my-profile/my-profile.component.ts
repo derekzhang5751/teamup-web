@@ -21,19 +21,19 @@ export class MyProfileComponent implements OnInit {
     constructor(private service: TeamupService, private sanitizer: DomSanitizer) { }
 
     ngOnInit() {
-        this.headPhotoUrl = this.service.getResourceDomain() + '/upload/default/head.svg';
+        this.headPhotoUrl = this.service.getResourceDomain() + '/default/head.svg';
         this.user = {
             id: 0,
-            username: 'Derek.Z',
+            username: '',
             level: 0,
-            first_name: 'Derek',
-            last_name: 'Zhang',
-            email: 'derekzhang5751@gmail.com',
-            mobile: '6478651048',
+            first_name: '',
+            last_name: '',
+            email: '',
+            mobile: '',
             sex: 0,
-            birthday: '1990-12-23',
-            reg_time: '2019-01-01',
-            desc: 'My Description',
+            birthday: '',
+            reg_time: '',
+            desc: '',
             photo_url: '',
             source: 'moreppl'
         };
@@ -58,6 +58,7 @@ export class MyProfileComponent implements OnInit {
                 if (resp.success) {
                     this.user = resp.data.user;
                     this.dataChanged = false;
+                    this.alert('Your profile has been updated.');
                 } else {
                     this.alert(resp.msg);
                 }
@@ -103,7 +104,6 @@ export class MyProfileComponent implements OnInit {
                 if (resp.success) {
                     this.user = resp.data.user;
                     this.headPhotoUrl = this.service.getResourceDomain() + this.user.photo_url;
-                    this.alert('Your profile has been updated.');
                 } else {
                     this.alert(resp.msg);
                 }
@@ -117,7 +117,6 @@ export class MyProfileComponent implements OnInit {
                 console.log(resp);
                 if (resp.success) {
                     this.followTeams = resp.data.follows;
-                    this.alert('Your follows has been updated.');
                 } else {
                     this.alert(resp.msg);
                 }
@@ -131,7 +130,6 @@ export class MyProfileComponent implements OnInit {
                 console.log(resp);
                 if (resp.success) {
                     this.myTeams = resp.data.myteams;
-                    this.alert('Your teams has been updated.');
                 } else {
                     this.alert(resp.msg);
                 }
@@ -153,12 +151,15 @@ export class MyProfileComponent implements OnInit {
                 const result = JSON.parse(xhr.response);
                 if (result.success) {
                     console.log('Uploading... Success');
+                    this.alert('Your head photo has been updated.');
                 } else {
                     console.log('Uploading... Failed', result.msg);
+                    this.alert(result.msg);
                 }
             } else {
                 // console.log('Upload Error');
                 console.log('Uploading... Error');
+                this.alert('Upload failed, please try again later!');
             }
         };
         xhr.upload.onprogress = (event) => {
@@ -172,5 +173,6 @@ export class MyProfileComponent implements OnInit {
 
     private alert(msg: string) {
         console.log('Alert', msg);
+        window.alert(msg);
     }
 }

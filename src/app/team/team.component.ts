@@ -80,9 +80,10 @@ export class TeamComponent implements OnInit {
             (resp: any) => {
                 console.log(resp);
                 if (resp.success) {
-                    // this.team.id = resp.data.userId;
+                    this.team.id = resp.data.userId;
                     const url = '/myteam/edit/' + resp.data.teamId as string;
-                    this.router.navigate([url]);
+                    // this.router.navigate([url]);
+                    window.open(url, '_self');
                 } else {
                     this.alert(resp.msg);
                 }
@@ -107,6 +108,10 @@ export class TeamComponent implements OnInit {
         this.headPhotoUrl = this.sanitizer.bypassSecurityTrustUrl(url);
         */
         this.doUpload();
+    }
+
+    onDeletePhotoClick(photo: Photo) {
+        console.log(photo);
     }
 
     private requestTeamDetail(teamId: number) {

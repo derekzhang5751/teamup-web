@@ -20,8 +20,10 @@
             <div class="input-group-prepend">
                 <span class="input-group-text input-title">Activity Time</span>
             </div>
-            <input type="text" class="form-control team_datetime" aria-describedby="basic-addon3" [(ngModel)]="team.time_begin">
-            <input type="text" class="form-control team_datetime" aria-describedby="basic-addon3" [(ngModel)]="team.time_end">
+            <input type="text" class="form-control team_datetime" aria-describedby="basic-addon3"
+                [(ngModel)]="team.time_begin">
+            <input type="text" class="form-control team_datetime" aria-describedby="basic-addon3"
+                [(ngModel)]="team.time_end">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -63,12 +65,11 @@
         </div>
         <div class="mx-auto" style="width: 100%; text-align: center;">
             <!--button type="button" class="btn btn-primary" (click)="onCancelClick()">Cancel</button>&nbsp;-->
-            <button type="button" class="btn btn-primary" (click)="onSaveTeamClick()">Save Team</button>&nbsp;
-            <button type="button" class="btn btn-primary" *ngIf="team.id > 0" (click)="onUploadPhotoClick()">Upload Photo</button>
-            <div class="input-group mb-3" *ngIf="team.id > 0">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupUploadPhoto" name="inputGroupUploadPhoto" accept="image/*"
-                        aria-describedby="inputGroupFileAddon01" (change)="onUploadPhotoClick($event)">
+            <div class="input-group mb-3">
+                <button type="button" class="btn btn-primary" (click)="onSaveTeamClick()">Save Team</button>&nbsp;
+                <div class="custom-file" *ngIf="team.id > 0">
+                    <input type="file" class="custom-file-input" id="inputGroupUploadPhoto" name="inputGroupUploadPhoto"
+                        accept="image/*" aria-describedby="inputGroupFileAddon01" (change)="onUploadPhotoClick($event)">
                     <label class="custom-file-label" for="inputGroupUploadPhoto">Upload Photo</label>
                 </div>
             </div>
@@ -77,7 +78,10 @@
         <div class="pic-container" *ngIf="photoList.length > 0">
             <div class="team-pic-frame" *ngFor="let photo of photoList; let i=index;">
                 <img class="team-pic" [src]="photo.pic_url" alt="Photo">
-                <button type="button" class="btn btn-primary">Delete</button>
+                <button type="button" class="close close-btn" aria-label="Close" (click)="onDeletePhotoClick(photo)">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <!--button type="button" class="btn btn-primary">Delete</button-->
             </div>
         </div>
     </div>

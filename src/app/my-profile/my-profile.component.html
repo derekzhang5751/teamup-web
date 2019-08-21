@@ -114,21 +114,21 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text input-pass-title">Old Password</span>
                             </div>
-                            <input type="text" class="form-control" aria-describedby="basic-addon3"
+                            <input type="password" class="form-control" aria-describedby="basic-addon3"
                                 [(ngModel)]="oldPass">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text input-pass-title">New Password</span>
                             </div>
-                            <input type="text" class="form-control" aria-describedby="basic-addon3"
+                            <input type="password" class="form-control" aria-describedby="basic-addon3"
                                 [(ngModel)]="newPass1">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text input-pass-title">Repeat New Password</span>
                             </div>
-                            <input type="text" class="form-control" aria-describedby="basic-addon3"
+                            <input type="password" class="form-control" aria-describedby="basic-addon3"
                                 [(ngModel)]="newPass2">
                         </div>
                         <div class="mx-auto" style="width: 100%; text-align: center;">
@@ -140,7 +140,7 @@
                     <div class="tab-pane fade" id="pills-follows" role="tabpanel" aria-labelledby="pills-follows-tab">
                         <div class="follows-frame">
                             <div class="card follows-card" *ngFor="let item of followTeams; let i=index;">
-                                <img src="item.photo" class="card-img-top" (click)="onTeamClick(item.id)">
+                                <img [src]="item.photo" class="card-img-top" (click)="onTeamClick(item.id)">
                                 <div class="card-body">
                                     <p class="card-text"> <a href="/team/view/{{item.id}}"
                                             target="_blank">{{item.title}}</a> </p>
