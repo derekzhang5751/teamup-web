@@ -14,6 +14,7 @@ export class TeamViewComponent implements OnInit {
     public userId: number;
     public team: Team;
     public photoList: Array<Photo>;
+    public joinRequestList: Array<JoinRequest>;
     // for Request
     public requestRemark: string;
 
@@ -23,6 +24,7 @@ export class TeamViewComponent implements OnInit {
     ngOnInit() {
         this.userId = this.service.userId;
         this.photoList = [];
+        this.joinRequestList = [];
         this.team = {
             id: 0,
             author: this.service.userId,
@@ -67,6 +69,9 @@ export class TeamViewComponent implements OnInit {
                     if (this.team.id > 0) {
                         this.requestTeamPhotos(this.team.id);
                     }
+                    if (this.team.author === this.service.userId) {
+                        this.getJoinRequestList(this.team.id);
+                    }
                 }
             }
         );
@@ -81,6 +86,11 @@ export class TeamViewComponent implements OnInit {
                 }
             }
         );
+    }
+
+    onAcceptJoinClick(request: JoinRequest) {
+        console.log(request);
+        this.doAcceptRequest(request);
     }
 
     onSubscriptClick() {
@@ -103,7 +113,7 @@ export class TeamViewComponent implements OnInit {
             (resp: any) => {
                 console.log(resp);
                 if (resp.success) {
-                    // this.navCtrl.pop();
+                    this.alert('Request has been sent.');
                 } else {
                     this.alert(resp.msg);
                 }
@@ -111,8 +121,35 @@ export class TeamViewComponent implements OnInit {
         );
     }
 
-    private doSubscriptTeam(userId) {
-        let apply = {
+    private getJoinRequestList(teamId: number) {
+        this.service.apiGetApplyList(teamId).subscribe(
+            (resp: any) => {
+                console.log(resp);
+                if (resp.success) {
+                    this.joinRequestList = resp.data.joinRequestList;
+                } else {
+                    // this.alert(resp.msg);
+                    console.log(resp.msg);
+                }
+            }
+        );
+    }
+
+    private doAcceptRequest(request: JoinRequest) {
+        this.service.apiAcceptApply(request).subscribe(
+            (resp: any) => {
+                console.log(resp);
+                if (resp.success) {
+                    this.getJoinRequestList(this.team.id);
+                } else {
+                    this.alert(resp.msg);
+                }
+            }
+        );
+    }
+
+    private doSubscriptTeam(userId: number) {
+        const apply = {
             user_id: userId,
             team_id: this.team,
             status: 0,

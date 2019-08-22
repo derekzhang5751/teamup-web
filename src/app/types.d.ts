@@ -40,6 +40,7 @@ interface TeamBrief {
     status: number;
     title: string;
     photo: string;
+    request: number;
 }
 
 interface Photo {
@@ -48,4 +49,13 @@ interface Photo {
     store_type: number;
     status: number;
     pic_url: string;
+}
+
+interface JoinRequest {
+    id: number;
+    user_id: number;
+    first_name: string;
+    team_id: number;
+    status: number;
+    remark: string;
 }
